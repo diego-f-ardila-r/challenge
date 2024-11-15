@@ -1,0 +1,6 @@
+@Metafar.Challenge.WebApi_HostAddress = http://localhost:5286
+
+GET {{Metafar.Challenge.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
