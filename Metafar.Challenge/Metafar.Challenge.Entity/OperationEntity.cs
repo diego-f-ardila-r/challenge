@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Metafar.Challenge.Model.Entities;
+namespace Metafar.Challenge.Entity;
 
 /// <summary>
 /// Represents an operation entity.
 /// </summary>
-public class Operation : BaseEntity
+public class OperationEntity : BaseEntity
 {
     /// <summary>
     /// Unique identifier for the operation.

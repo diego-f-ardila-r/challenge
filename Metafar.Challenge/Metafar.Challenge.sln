@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metafar.Challenge.Repositor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metafar.Challenge.Service", "Metafar.Challenge.Service\Metafar.Challenge.Service.csproj", "{67166896-48CE-433E-8C1A-57FFEF316251}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metafar.Challenge.Model", "Metafar.Challenge.Model\Metafar.Challenge.Model.csproj", "{7DB9F3FF-07AB-4F09-B441-F210CF7E6E89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metafar.Challenge.Entity", "Metafar.Challenge.Entity\Metafar.Challenge.Entity.csproj", "{7DB9F3FF-07AB-4F09-B441-F210CF7E6E89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metafar.Challenge.Model", "Metafar.Challenge.Model\Metafar.Challenge.Model.csproj", "{D92B4777-2A6E-4DCA-94FA-13F741DF087C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,5 +43,9 @@ Global
 		{7DB9F3FF-07AB-4F09-B441-F210CF7E6E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DB9F3FF-07AB-4F09-B441-F210CF7E6E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DB9F3FF-07AB-4F09-B441-F210CF7E6E89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92B4777-2A6E-4DCA-94FA-13F741DF087C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92B4777-2A6E-4DCA-94FA-13F741DF087C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92B4777-2A6E-4DCA-94FA-13F741DF087C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92B4777-2A6E-4DCA-94FA-13F741DF087C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

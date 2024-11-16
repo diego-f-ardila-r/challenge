@@ -1,14 +1,14 @@
-using Metafar.Challenge.Model.Entities;
+using Metafar.Challenge.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Metafar.Challenge.Repository.Domain;
+namespace Metafar.Challenge.Repository;
 
-public class DomainDbContext: DbContext
+public class RepositoryDbContext: DbContext
 {
-    public DbSet<CardModel> Cards { get; set; }
-    public DbSet<AccountModel> Accounts { get; set; }
-    public DbSet<Operation> Operations { get; set; }
-    public DbSet<UserModel> Users { get; set; }
+    public DbSet<CardEntity> Cards { get; set; }
+    public DbSet<AccountEntity> Accounts { get; set; }
+    public DbSet<OperationEntity> Operations { get; set; }
+    public DbSet<UserEntity> Users { get; set; }
     
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

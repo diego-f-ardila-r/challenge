@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Metafar.Challenge.Model.Entities;
+namespace Metafar.Challenge.Entity;
 
 /// <summary>
 /// Represents a card entity with associated properties.
 /// </summary>
-public class CardModel : BaseEntity
+public class CardEntity : BaseEntity
 {
     /// <summary>
     /// The unique identifier for the card.

@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Metafar.Challenge.Model.Entities;
+namespace Metafar.Challenge.Entity;
 
 /// <summary>
 /// Represents an account entity.
 /// </summary>
-public class AccountModel : BaseEntity
+public class AccountEntity : BaseEntity
 {
     /// <summary>
     /// The unique identifier for the account.
@@ -31,10 +31,10 @@ public class AccountModel : BaseEntity
     /// <summary>
     /// User associated with the account.
     /// </summary>
-    public UserModel? User { get; set; }
+    public UserEntity? User { get; set; }
 
     /// <summary>
     /// The cards associated with the account.
     /// </summary>
-    public ICollection<CardModel> Cards { get; set; } = [];
+    public ICollection<CardEntity> Cards { get; set; } = [];
 }

@@ -20,7 +20,7 @@ services:
         - '5000:8080'
     build:
       context: .
-      dockerfile: Metafar.Challenge.WebApi/Dockerfile
+      dockerfile: Dockerfile
       
   metafar.challenge.db:
     image: mcr.microsoft.com/mssql/server:2017-latest

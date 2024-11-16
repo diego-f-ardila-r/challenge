@@ -13,9 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+      <ProjectReference Include="..\Metafar.Challenge.Infrastructure\Metafar.Challenge.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

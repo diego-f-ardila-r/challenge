@@ -6,7 +6,15 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+COPY ["Metafar.Challenge.Entity/Metafar.Challenge.Entity.csproj", "Metafar.Challenge.Entity/"]
+COPY ["Metafar.Challenge.Model/Metafar.Challenge.Model.csproj", "Metafar.Challenge.Model/"]
+COPY ["Metafar.Challenge.Infrastructure/Metafar.Challenge.Infrastructure.csproj", "Metafar.Challenge.Infrastructure/"]
+COPY ["Metafar.Challenge.Repository/Metafar.Challenge.Repository.csproj", "Metafar.Challenge.Repository/"]
+COPY ["Metafar.Challenge.Service/Metafar.Challenge.Service.csproj", "Metafar.Challenge.Service/"]
 COPY ["Metafar.Challenge.WebApi/Metafar.Challenge.WebApi.csproj", "Metafar.Challenge.WebApi/"]
+
+
 RUN dotnet restore "Metafar.Challenge.WebApi/Metafar.Challenge.WebApi.csproj"
 COPY . .
 WORKDIR "/src/Metafar.Challenge.WebApi"

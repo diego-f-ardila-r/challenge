@@ -1,4 +1,4 @@
-namespace Metafar.Challenge.Model.Entities;
+namespace Metafar.Challenge.Entity;
 
 public class BaseEntity
 {

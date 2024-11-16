@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Metafar.Challenge.Model.Entities;
+namespace Metafar.Challenge.Entity;
 
 /// <summary>
 /// Represents a user model entity.
 /// </summary>
-public class UserModel : BaseEntity
+public class UserEntity : BaseEntity
 {
     /// <summary>
     /// The unique identifier for the user.
