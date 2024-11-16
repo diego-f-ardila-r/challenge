@@ -27,4 +27,9 @@ public class OperationEntity : BaseEntity
     /// Amount of the operation.
     /// </summary>
     public decimal Amount { get; set; }
+    
+    /// <summary>
+    /// Account associated with the operation.
+    /// </summary>
+    public AccountEntity Account { get; set; }
 }

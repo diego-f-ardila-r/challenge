@@ -10,5 +10,7 @@ public interface ICardCommandRepository : IBaseRepository<CardEntity>
     // /// </summary>
     // /// <param name="cardNumber">The card number to block.</param>
     // /// <returns>A task that represents the asynchronous operation.</returns>
-    Task BlockCardAsync(int cardNumber);
+    Task<int> BlockCardAsync(int cardNumber);
+
+    Task IncrementFailedAttemptsAsync(CardEntity card);
 }

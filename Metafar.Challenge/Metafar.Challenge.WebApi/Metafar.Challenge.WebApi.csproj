@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Metafar.Challenge.Infrastructure\Metafar.Challenge.Infrastructure.csproj" />
+      <ProjectReference Include="..\Metafar.Challenge.UseCase\Metafar.Challenge.UseCase.csproj" />
     </ItemGroup>
 
 </Project>

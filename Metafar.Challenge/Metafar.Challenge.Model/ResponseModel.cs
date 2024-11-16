@@ -1,6 +1,6 @@
 ﻿namespace Metafar.Challenge.Model;
 
-    public class ResponseModel<T> where T : class
+    public record ResponseModel<T> where T : class
     {
         /// <summary>
         /// Enum representing the types of responses.

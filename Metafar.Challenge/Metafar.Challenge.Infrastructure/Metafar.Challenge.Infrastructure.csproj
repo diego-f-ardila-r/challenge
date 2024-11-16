@@ -8,7 +8,9 @@
 
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="13.0.1" />
+      <PackageReference Include="MediatR" Version="12.4.1" />
       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.11" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
       <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.0.0" />
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.0.0" />
@@ -18,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Metafar.Challenge.Model\Metafar.Challenge.Model.csproj" />
+      <ProjectReference Include="..\Metafar.Challenge.Repository\Metafar.Challenge.Repository.csproj" />
     </ItemGroup>
 
 </Project>

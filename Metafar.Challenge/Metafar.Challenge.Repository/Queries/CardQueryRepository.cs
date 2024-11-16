@@ -4,17 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Metafar.Challenge.Repository.Queries;
 
-public class CardQueryRepository(RepositoryDbContext context) : EntityFrameworkBaseRepository<CardEntity>(context), ICardQueryRepository
+public class CardQueryRepository(MetafarDbContext context) : EntityFrameworkBaseRepository<CardEntity>(context), ICardQueryRepository
 {
     /// <summary>
-    /// Retrieves a card by its card number and PIN.
+    /// Retrieves a card by its card number
     /// </summary>
     /// <param name="cardNumber">The card number to search for.</param>
-    /// <param name="pin">The PIN associated with the card number.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the card model if found; otherwise, null.</returns>
     /// <remarks>Access is through SQL Server.</remarks>
-    public async Task<CardEntity?> GetCardByCardNumberAndPinAsync(int cardNumber, int pin)
+    public async Task<CardEntity?> GetCardByCardNumberAsync(int cardNumber)
     {
-        return await context.Set<CardEntity>().FirstOrDefaultAsync(c => c.CardNumber == cardNumber && c.AccessPin == pin);
+        return await context.Set<CardEntity>().FirstOrDefaultAsync(c => c.CardNumber == cardNumber);
     }
 }

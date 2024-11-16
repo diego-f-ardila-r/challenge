@@ -3,8 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Metafar.Challenge.Repository;
 
-public class RepositoryDbContext: DbContext
+public class MetafarDbContext : DbContext
 {
+    public MetafarDbContext(){}
+    public MetafarDbContext(DbContextOptions<MetafarDbContext> options)
+        : base(options)
+    {
+    } 
     public DbSet<CardEntity> Cards { get; set; }
     public DbSet<AccountEntity> Accounts { get; set; }
     public DbSet<OperationEntity> Operations { get; set; }
@@ -24,6 +29,9 @@ public class RepositoryDbContext: DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=localhost,1433;Initial Catalog=metafar.challenge.db;Persist Security Info=False;User ID=sa;Password=Password12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;");
+        optionsBuilder
+            .UseSqlServer("Server=localhost,1433;Initial Catalog=metafar.challenge.db;Persist Security Info=False;User ID=sa;Password=Password12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;")
+            //.UseSqlServer(connectionString)
+            .UseSnakeCaseNamingConvention();
     }
 }

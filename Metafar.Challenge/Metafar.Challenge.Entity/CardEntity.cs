@@ -37,4 +37,9 @@ public class CardEntity : BaseEntity
     /// Indicates whether the card is blocked.
     /// </summary>
     public bool IsBlocked { get; set; }
+    
+    /// <summary>
+    /// Associated account.
+    /// </summary>
+    public AccountEntity Account { get; set; }
 }

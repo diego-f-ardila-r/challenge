@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using Metafar.Challenge.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Metafar.Challenge.Infrastructure.Extensions;
 
@@ -23,6 +26,9 @@ public static class ServiceExtension
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        
+        // Logger configuration
+        
 
         // Add OSS configuration
         builder.Services.AddErrorHandlerConfiguration();
@@ -30,7 +36,15 @@ public static class ServiceExtension
 
         // Set routing configuration
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
+        
+        // Set mediator configuration
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+        
+        //Set db context configuration
+        builder.Services.AddDbContext<MetafarDbContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("MetafarConnection"));
+        });
     }
 
     private static IServiceCollection AddCustomControllerConfiguration(this IServiceCollection services)

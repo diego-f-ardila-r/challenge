@@ -11,7 +11,7 @@ COPY ["Metafar.Challenge.Entity/Metafar.Challenge.Entity.csproj", "Metafar.Chall
 COPY ["Metafar.Challenge.Model/Metafar.Challenge.Model.csproj", "Metafar.Challenge.Model/"]
 COPY ["Metafar.Challenge.Infrastructure/Metafar.Challenge.Infrastructure.csproj", "Metafar.Challenge.Infrastructure/"]
 COPY ["Metafar.Challenge.Repository/Metafar.Challenge.Repository.csproj", "Metafar.Challenge.Repository/"]
-COPY ["Metafar.Challenge.Service/Metafar.Challenge.Service.csproj", "Metafar.Challenge.Service/"]
+COPY ["Metafar.Challenge.UseCase/Metafar.Challenge.UseCase.csproj", "Metafar.Challenge.UseCase/"]
 COPY ["Metafar.Challenge.WebApi/Metafar.Challenge.WebApi.csproj", "Metafar.Challenge.WebApi/"]
 
 

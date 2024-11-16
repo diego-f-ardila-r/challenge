@@ -12,6 +12,11 @@ public class UserEntity : BaseEntity
     /// </summary>
     [Key]
     public Guid UserId { get; set; }
+    
+    /// <summary>
+    /// The username of the user.
+    /// </summary>
+    public string UserName { get; set; }
 
     /// <summary>
     /// The first name of the user.
@@ -22,4 +27,9 @@ public class UserEntity : BaseEntity
     /// The last name of the user.
     /// </summary>
     public string LastName { get; set; }
+    
+    /// <summary>
+    /// The collection of accounts associated with the user.
+    /// </summary>
+    public ICollection<AccountEntity> Accounts { get; set; } = [];
 }
