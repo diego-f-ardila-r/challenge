@@ -8,7 +8,7 @@ using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumbe
 using Metafar.Challenge.UseCase.Automapper;
 using Moq;
 
-namespace Metafar.Challenge.UnitTest;
+namespace Metafar.Challenge.UnitTest.UseCases;
 
 public class GetAccountInformationByCardNumberHandlerTests
 {
