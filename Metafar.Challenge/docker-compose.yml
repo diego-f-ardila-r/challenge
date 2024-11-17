@@ -1,19 +1,32 @@
-﻿version: '3.9'
-
-networks:
+﻿networks:
   app-metafar-network-public:
     driver: bridge
 
 volumes:
-  sql-server-data:
+  sql_data:
     driver: local
 
 services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-db
+    networks:
+      - app-metafar-network-public
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Password12345" 
+      ACCEPT_EULA: "Y" 
+    volumes:
+      - sql_data:/var/opt/mssql
+    restart: unless-stopped
+
   metafar.challenge.webapi:
-    image: metafar.challenge.webapi
+    image: metafar.challenge.webapi:v1
     container_name: metafar.challenge.webapi
     depends_on:
-      - metafar.challenge.db
+      - sqlserver
     networks:
       - app-metafar-network-public
     ports:
@@ -21,18 +34,3 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      
-  metafar.challenge.db:
-    image: mcr.microsoft.com/mssql/server:2017-latest
-    container_name: metafar.challenge.db
-    networks:
-      - app-metafar-network-public
-    restart: always
-    env_file:
-      - sqlserver.env
-      - sapassword.env
-    ports:
-      - '1433:1433'
-    volumes:
-        - sql-server-data:/var/opt/mssql/data
-

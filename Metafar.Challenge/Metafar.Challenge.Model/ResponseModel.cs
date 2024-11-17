@@ -10,6 +10,7 @@
             Success,
             NoContent,
             FunctionalError,
+            Unauthorized,
             Error
         }
         /// <summary>
@@ -81,6 +82,13 @@
             Status = ResponseType.Error.ToString();
             MessageCode = "Internal Error Server";
             Errors = errors;
+        }
+        
+        public void SetUnauthorizedErrorResponse(string messageCode, dynamic? error = null)
+        {
+            Status = ResponseType.Unauthorized.ToString();
+            MessageCode = messageCode;
+            Errors = error;
         }
     
 }

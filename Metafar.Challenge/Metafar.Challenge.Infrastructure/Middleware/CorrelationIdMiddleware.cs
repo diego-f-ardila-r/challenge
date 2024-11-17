@@ -1,3 +1,4 @@
+using Metafar.Challenge.Infrastructure.Constants;
 using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model;
 using Microsoft.AspNetCore.Http;
@@ -10,8 +11,6 @@ namespace Metafar.Challenge.Infrastructure.Middleware;
 /// </summary>
 public class CorrelationIdMiddleware(RequestDelegate next)
 {
-    private const string X_CORRELATION_ID = "oss-correlation-id";
-    
     public async Task Invoke(HttpContext context, CorrelationIdGeneratorUtility correlationIdGenerator)
     {
         var correlationId = GetCorrelationId(context, correlationIdGenerator);
@@ -27,7 +26,7 @@ public class CorrelationIdMiddleware(RequestDelegate next)
 /// <returns>The correlation ID as a <see cref="StringValues"/>.</returns>
 private static StringValues GetCorrelationId(HttpContext context, CorrelationIdGeneratorUtility correlationIdGenerator)
 {
-    if(context.Request.Headers.TryGetValue(X_CORRELATION_ID, out var correlationId))
+    if(context.Request.Headers.TryGetValue(HttpHeaderConstant.CorrelationId, out var correlationId))
     {
         correlationIdGenerator.Set(correlationId);
         return correlationId;
@@ -47,7 +46,7 @@ private static void AddCorrelationIdHeaderToResponse(HttpContext context, String
 { 
     context.Response.OnStarting(() =>
     {
-        context.Response.Headers.Append(X_CORRELATION_ID, new[] { correlationId.ToString() });
+        context.Response.Headers.Append(HttpHeaderConstant.CorrelationId, new[] { correlationId.ToString() });
         return Task.CompletedTask;
     });
 }

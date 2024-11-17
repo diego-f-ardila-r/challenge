@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Metafar.Challenge.Infrastructure.Constants;
+using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,9 +29,6 @@ public static class ServiceExtension
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         
-        // Logger configuration
-        
-
         // Add OSS configuration
         builder.Services.AddErrorHandlerConfiguration();
         builder.Services.AddCustomConfiguration();
@@ -43,8 +42,11 @@ public static class ServiceExtension
         //Set db context configuration
         builder.Services.AddDbContext<MetafarDbContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("MetafarConnection"));
+            options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION"));
         });
+        
+        // Set AppSettings configuration
+        builder.Services.Configure<AppSettingsModel>(builder.Configuration.GetSection("AppSettings"));
     }
 
     private static IServiceCollection AddCustomControllerConfiguration(this IServiceCollection services)
@@ -52,8 +54,8 @@ public static class ServiceExtension
         services.AddControllers(options =>
         {
             // set content type for swagger requests
-            options.Filters.Add(new ConsumesAttribute("application/json"));
-            options.Filters.Add(new ProducesAttribute("application/json"));
+            options.Filters.Add(new ConsumesAttribute(HttpHeaderConstant.ApplicationJsonContentType));
+            options.Filters.Add(new ProducesAttribute(HttpHeaderConstant.ApplicationJsonContentType));
         })
         .AddJsonOptions(options =>
         {
@@ -98,6 +100,7 @@ public static class ServiceExtension
 
     private static IServiceCollection AddErrorHandlerConfiguration(this IServiceCollection services)
     {
+        services.AddScoped<UnauthorizedException>();
         services.AddExceptionHandler<FunctionalExceptionHandler> ();
         services.AddExceptionHandler<GlobalExceptionHandler> ();
         services.AddProblemDetails();

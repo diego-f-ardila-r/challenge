@@ -1,5 +1,6 @@
 using MediatR;
 using Metafar.Challenge.UseCase.Security.Queries.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Metafar.Challenge.WebApi.Controllers;
@@ -14,6 +15,7 @@ public class LoginController(IMediator mediator, AuthenticationQuery authenticat
     /// <summary>
     /// User Login
     /// </summary>
+    //[Authorize]
     [HttpGet("{{cardNumber}}/{{pin}}")]
     public async Task<IActionResult> LoginAsync(int cardNumber, int pin)
     {

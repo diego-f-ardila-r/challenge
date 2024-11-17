@@ -25,20 +25,20 @@ public class AuthenticationHandler(
     {
         var card = await cardQueryRepository.GetCardByCardNumberAsync(request.CardNumber);
         
-        if (card == null) throw new FunctionalException("INVALID_CARD_OR_PIN");
+        if (card == null) 
+            throw new FunctionalException("INVALID_CARD_OR_PIN");
 
         // Validate if the card is locked
-        if (card.IsBlocked) throw new FunctionalException("CARD_IS_BLOCKED");
+        if (card.IsBlocked) 
+            throw new FunctionalException("THE_CARD_HAS_BEEN_BLOCKED");
         
         // Validate if the pin is correct
         if (card.AccessPin != request.Pin) 
         {
-            card.FailedAttempts++;
-            
             // Validate if FailedAttempts is greater than 4, which means the card must be blocked
             if (card.FailedAttempts > 4)
             {
-                await cardCommandRepository.BlockCardAsync(card.CardNumber);
+                await cardCommandRepository.BlockCardAsync(card);
                 throw new FunctionalException("THE_CARD_HAS_BEEN_BLOCKED");
             }
             
@@ -47,10 +47,14 @@ public class AuthenticationHandler(
             throw new FunctionalException("INVALID_CARD_OR_PIN");
         }
         
+        // Reset the failed attempts count to zero
+        if (card.FailedAttempts > 0) 
+            await cardCommandRepository.ResetFailedAttemptsAsync(card);
+        
         // Generate a JWT token
         response.Data = new TokenDto
         {
-            Token = JwtTokenUtility.GenerateJwtToken("1a382c6e-fa61-4fa1-87ac-0f3ed5aca962","METAFAR","CHALLENGE", card.CardNumber.ToString())
+            Token = JwtTokenUtility.GenerateJwtToken(card.CardNumber.ToString())
         };
 
         return response;

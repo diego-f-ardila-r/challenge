@@ -1,5 +1,6 @@
 using Metafar.Challenge.Dto;
 using Metafar.Challenge.Infrastructure.Extensions;
+using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Commands;
 using Metafar.Challenge.Repository.Queries;

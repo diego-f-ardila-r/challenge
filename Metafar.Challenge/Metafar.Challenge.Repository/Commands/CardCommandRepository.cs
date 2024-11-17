@@ -7,15 +7,16 @@ namespace Metafar.Challenge.Repository.Commands;
 public class CardCommandRepository(MetafarDbContext context) : EntityFrameworkBaseRepository<CardEntity>(context), ICardCommandRepository
 {
     /// <summary>
-    /// Blocks a card by its card number.
+    /// Asynchronously blocks the specified card.
     /// </summary>
-    /// <param name="cardNumber">The card number to block.</param>
-    /// <returns>A task that represents the asynchronous operation.</returns>
-    public async Task<int> BlockCardAsync(int cardNumber)
+    /// <param name="card">The card entity to be blocked.</param>
+    public async Task<int> BlockCardAsync(CardEntity card)
     {
-        var card = new CardEntity() { CardNumber = cardNumber, IsBlocked = true };
+        card.IsBlocked = true;
+        card.UpdatedDate = DateTime.UtcNow;
         context.Cards.Attach(card);
         context.Entry(card).Property(x => x.IsBlocked).IsModified = true;
+        context.Entry(card).Property(x => x.UpdatedDate).IsModified = true;
         return await context.SaveChangesAsync();
     }
     
@@ -23,11 +24,27 @@ public class CardCommandRepository(MetafarDbContext context) : EntityFrameworkBa
     /// Increments the failed attempts count for the specified card.
     /// </summary>
     /// <param name="card">The card entity to update.</param>
-    /// <returns>A task that represents the asynchronous operation.</returns>
     public async Task IncrementFailedAttemptsAsync(CardEntity card)
     {
+        card.FailedAttempts++;
+        card.UpdatedDate = DateTime.UtcNow;
         context.Cards.Attach(card);
         context.Entry(card).Property(x => x.FailedAttempts).IsModified = true;
+        context.Entry(card).Property(x => x.UpdatedDate).IsModified = true;
+        await context.SaveChangesAsync();
+    }
+    
+    /// <summary>
+    /// Resets the failed attempts count to zero for the specified card.
+    /// </summary>
+    /// <param name="card">The card entity to update.</param>
+    public async Task ResetFailedAttemptsAsync(CardEntity card)
+    {
+        card.FailedAttempts = 0;
+        card.UpdatedDate = DateTime.UtcNow;
+        context.Cards.Attach(card);
+        context.Entry(card).Property(x => x.FailedAttempts).IsModified = true;
+        context.Entry(card).Property(x => x.UpdatedDate).IsModified = true;
         await context.SaveChangesAsync();
     }
 }
