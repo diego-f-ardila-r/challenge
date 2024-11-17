@@ -14,7 +14,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5286",
+      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DB_CONNECTION": "Server=localhost,1433;Initial Catalog=metafar.challenge.db;Persist Security Info=False;User ID=sa;Password=Password12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;",

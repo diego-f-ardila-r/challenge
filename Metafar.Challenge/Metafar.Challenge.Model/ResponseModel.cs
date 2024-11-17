@@ -80,7 +80,7 @@
         public void SetInternalErrorServerResponse(dynamic? errors = null)
         {
             Status = ResponseType.Error.ToString();
-            MessageCode = "Internal Error Server";
+            MessageCode = "INTERNAL_SERVER_ERROR";
             Errors = errors;
         }
         

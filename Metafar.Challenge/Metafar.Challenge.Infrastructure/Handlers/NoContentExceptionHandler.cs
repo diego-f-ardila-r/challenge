@@ -11,15 +11,15 @@ namespace Metafar.Challenge.Infrastructure.Handlers;
 /// <summary>
 /// Handles functional exceptions and sets the appropriate HTTP response.
 /// </summary>
-public class FunctionalExceptionHandler(ILogger<FunctionalExceptionHandler> logger) : BaseExceptionHandler<FunctionalException>(logger)
+public class NoContentExceptionHandler(ILogger<NoContentException> logger) : BaseExceptionHandler<FunctionalException>(logger)
 {
     protected override void SetErrorResponse(ResponseModel<object>? responseResult, FunctionalException exception)
     {
-        responseResult?.SetFunctionalErrorResponse(exception.Message);
+        responseResult?.SetNoContentErrorResponse(exception.Message);
     }
     
     protected override int GetStatusCode()
     {
-        return StatusCodes.Status206PartialContent;
+        return StatusCodes.Status404NotFound;
     }
 }

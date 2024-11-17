@@ -1,7 +1,7 @@
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Repository.Core;
 
-namespace Metafar.Challenge.Repository.Commands;
+namespace Metafar.Challenge.Repository.Commands.Card;
 
 public interface ICardCommandRepository : IBaseRepository<CardEntity>
 {

@@ -3,9 +3,13 @@ using Metafar.Challenge.Infrastructure.Extensions;
 using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Commands;
+using Metafar.Challenge.Repository.Commands.Card;
 using Metafar.Challenge.Repository.Queries;
-using Metafar.Challenge.UseCase.Security.Queries.Authentication;
-using Metafar.Challenge.UseCase.Users.Queries.UserLgoin;
+using Metafar.Challenge.Repository.Queries.Account;
+using Metafar.Challenge.Repository.Queries.Card;
+using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
+using Metafar.Challenge.UseCase.Automapper;
+using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +19,21 @@ ServiceExtension.SetGlobalConfiguration(builder);
 // Add Repository services
 builder.Services.AddScoped<ICardQueryRepository, CardQueryRepository>();
 builder.Services.AddScoped<ICardCommandRepository, CardCommandRepository>();
+builder.Services.AddScoped<IAccountQueryRepository, AccountQueryRepository>();
+
+// Add auto-mapper profiles
+builder.Services.AddAutoMapper(typeof(ChallengeMapperProfile));
 
 // Add UseCase services for UserLogin
 builder.Services.AddScoped<ResponseModel<TokenDto>>();
-builder.Services.AddScoped<AuthenticationQuery>();
-builder.Services.AddScoped<AuthenticationHandler>();
-builder.Services.AddScoped<AuthenticationValidator>();
+builder.Services.AddScoped<SignInUserByCardQuery>();
+builder.Services.AddScoped<SignInUserByCardHandler>();
+builder.Services.AddScoped<SignInUserByCardValidator>();
+
+// add use case services for GetAccountInfoByCardNumber
+builder.Services.AddScoped<ResponseModel<AccountUserDto>>();
+builder.Services.AddScoped<GetAccountInfoByCardNumberQuery>();
+builder.Services.AddScoped<GetAccountInformationByCardNumberHandler>();
 
 var app = builder.Build();
 ApplicationBuilderExtension.SetGlobalApplicationBuilder(app);

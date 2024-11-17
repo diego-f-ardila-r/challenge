@@ -26,7 +26,7 @@ public class AccountEntity : BaseEntity
     /// <summary>
     /// Balance of the account.
     /// </summary>
-    public decimal Balance { get; set; }
+    public double Balance { get; set; }
 
     /// <summary>
     /// User associated with the account.
@@ -37,4 +37,6 @@ public class AccountEntity : BaseEntity
     /// The cards associated with the account.
     /// </summary>
     public ICollection<CardEntity> Cards { get; set; } = [];
+    
+    public ICollection<OperationEntity> Operations { get; set; } = [];
 }

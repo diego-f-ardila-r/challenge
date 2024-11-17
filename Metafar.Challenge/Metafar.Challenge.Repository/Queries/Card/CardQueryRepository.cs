@@ -2,7 +2,7 @@ using Metafar.Challenge.Entity;
 using Metafar.Challenge.Repository.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace Metafar.Challenge.Repository.Queries;
+namespace Metafar.Challenge.Repository.Queries.Card;
 
 public class CardQueryRepository(MetafarDbContext context) : EntityFrameworkBaseRepository<CardEntity>(context), ICardQueryRepository
 {

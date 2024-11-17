@@ -1,8 +1,7 @@
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Repository.Base;
-using Microsoft.EntityFrameworkCore;
 
-namespace Metafar.Challenge.Repository.Commands;
+namespace Metafar.Challenge.Repository.Commands.Card;
 
 public class CardCommandRepository(MetafarDbContext context) : EntityFrameworkBaseRepository<CardEntity>(context), ICardCommandRepository
 {
