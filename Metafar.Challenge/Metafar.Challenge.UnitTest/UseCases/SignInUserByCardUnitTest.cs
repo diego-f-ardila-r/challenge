@@ -2,7 +2,7 @@ using Metafar.Challenge.Dto;
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Model;
-using Metafar.Challenge.Repository.Commands.Card;
+using Metafar.Challenge.Repository.Card.Commands;
 using Metafar.Challenge.Repository.Queries.Card;
 using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
 using Microsoft.Extensions.Logging;

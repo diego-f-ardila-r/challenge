@@ -3,7 +3,7 @@ using Metafar.Challenge.Dto;
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Model;
-using Metafar.Challenge.Repository.Queries.Account;
+using Metafar.Challenge.Repository.Account.Queries;
 using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 using Metafar.Challenge.UseCase.Automapper;
 using Moq;

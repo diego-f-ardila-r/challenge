@@ -1,9 +1,8 @@
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Repository.Base;
-using Metafar.Challenge.Repository.Queries.Card;
 using Microsoft.EntityFrameworkCore;
 
-namespace Metafar.Challenge.Repository.Queries.Account;
+namespace Metafar.Challenge.Repository.Account.Queries;
 
 /// <summary>
 /// Implementation of the account query repository.

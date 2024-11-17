@@ -1,11 +1,8 @@
 using Metafar.Challenge.Dto;
 using Metafar.Challenge.Infrastructure.Extensions;
-using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model;
-using Metafar.Challenge.Repository.Commands;
-using Metafar.Challenge.Repository.Commands.Card;
-using Metafar.Challenge.Repository.Queries;
-using Metafar.Challenge.Repository.Queries.Account;
+using Metafar.Challenge.Repository.Account.Queries;
+using Metafar.Challenge.Repository.Card.Commands;
 using Metafar.Challenge.Repository.Queries.Card;
 using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 using Metafar.Challenge.UseCase.Automapper;

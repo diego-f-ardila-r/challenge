@@ -1,7 +1,7 @@
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Repository.Core;
 
-namespace Metafar.Challenge.Repository.Queries.Account;
+namespace Metafar.Challenge.Repository.Account.Queries;
 
 /// <summary>
 /// Interface for account query repository.

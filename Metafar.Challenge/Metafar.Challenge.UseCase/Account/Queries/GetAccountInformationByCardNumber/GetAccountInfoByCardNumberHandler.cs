@@ -3,7 +3,7 @@ using MediatR;
 using Metafar.Challenge.Dto;
 using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Model;
-using Metafar.Challenge.Repository.Queries.Account;
+using Metafar.Challenge.Repository.Account.Queries;
 
 namespace Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 
