@@ -8,6 +8,7 @@ WORKDIR /src
 
 COPY ["Metafar.Challenge.Entity/Metafar.Challenge.Entity.csproj", "Metafar.Challenge.Entity/"]
 COPY ["Metafar.Challenge.Model/Metafar.Challenge.Model.csproj", "Metafar.Challenge.Model/"]
+COPY ["Metafar.Challenge.Dto/Metafar.Challenge.Dto.csproj", "Metafar.Challenge.Dto/"]
 COPY ["Metafar.Challenge.Infrastructure/Metafar.Challenge.Infrastructure.csproj", "Metafar.Challenge.Infrastructure/"]
 COPY ["Metafar.Challenge.Repository/Metafar.Challenge.Repository.csproj", "Metafar.Challenge.Repository/"]
 COPY ["Metafar.Challenge.UseCase/Metafar.Challenge.UseCase.csproj", "Metafar.Challenge.UseCase/"]

@@ -33,7 +33,8 @@ services:
         - '5000:8080'
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      DB_CONNECTION: Server=host.docker.internal,1433;Initial Catalog=metafar.challenge.db;Persist Security Info=False;User ID=sa;Password=Password12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;
+      #DB_CONNECTION: Server=host.docker.internal,1433;Initial Catalog=metafar.challenge.db;Persist Security Info=False;User ID=sa;Password=Password12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;
+      DB_CONNECTION: Server=sqlserver; Database=metafar.challenge.db; User=sa; Password=Password12345
       JWT_SECRET: 1a382c6e-fa61-4fa1-87ac-0f3ed5aca962
       JWT_ISSUER: METAFAR
       JWT_AUDIENCE: METAFAR_CHALLENGE

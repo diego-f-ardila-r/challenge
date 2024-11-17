@@ -1,4 +1,5 @@
 using MediatR;
+using Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
 using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,17 +10,32 @@ namespace Metafar.Challenge.WebApi.Controllers.v1;
 /// </summary>
 /// [ApiController]
 [Route("api/v1/[controller]s")]
-public class AccountController(IMediator mediator, GetAccountInfoByCardNumberQuery getAccountInfoBayCardQuery) : Controller
+public class AccountController(
+    IMediator mediator, 
+    GetAccountInfoByCardNumberQuery getAccountInfoBayCardQuery
+    ) : Controller
 {
     /// <summary>
-    /// User Login
+    /// Get account information by card number.
     /// </summary>
     //[Authorize]
     [HttpGet("{cardNumber}")]
-    public async Task<IActionResult> GetAccountByCard(int cardNumber)
+    public async Task<IActionResult> GetAccountInfoByCard(int cardNumber)
     {
         getAccountInfoBayCardQuery.CardNumber = cardNumber;
         var response = await mediator.Send(getAccountInfoBayCardQuery);
         return Ok(response);
     }
+    
+    /// <summary>
+    /// Get account information by card number.
+    /// </summary>
+    //[Authorize]
+    [HttpPost("balance/withdraw")]
+    public async Task<IActionResult> WithdrawFromAccount([FromBody] WithdrawFromAccountCommand command)
+    {
+        var response = await mediator.Send(command);
+        return Ok(response);
+    }
+
 }

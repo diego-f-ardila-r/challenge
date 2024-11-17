@@ -7,7 +7,7 @@ namespace Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardN
 /// <summary>
 /// Query to get account information by card number.
 /// </summary>
-public class GetAccountInfoByCardNumberQuery : IRequest<ResponseModel<AccountUserDto>>
+public record GetAccountInfoByCardNumberQuery : IRequest<ResponseModel<AccountUserDto>>
 {
     /// <summary>
     /// Gets or sets the card number.

@@ -1,6 +1,6 @@
 namespace Metafar.Challenge.Dto;
 
-public class AccountUserDto
+public record AccountUserDto
 {
     /// <summary>
     /// Gets or sets the account ID.

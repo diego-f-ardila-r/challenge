@@ -17,4 +17,8 @@
       <ProjectReference Include="..\Metafar.Challenge.UseCase\Metafar.Challenge.UseCase.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Controllers\v1\AccountCommnadController.cs" />
+    </ItemGroup>
+
 </Project>
