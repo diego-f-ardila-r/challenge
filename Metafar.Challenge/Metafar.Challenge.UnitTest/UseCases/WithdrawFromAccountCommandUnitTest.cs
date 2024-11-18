@@ -39,8 +39,7 @@ public class WithdrawFromAccountHandlerTests
             .ReturnsAsync(value: null);
 
         // Act & Assert
-        var result =
-            await Assert.ThrowsAsync<NotImplementedException>(() => _handler.Handle(request, CancellationToken.None));
+        await Assert.ThrowsAsync<NotImplementedException>(() => _handler.Handle(request, CancellationToken.None));
     }
 
     [Fact]
