@@ -13,5 +13,8 @@ public class ChallengeMapperProfile : Profile
             .ForMember(dest => dest.FullName, opt
                 => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName))
             .ForMember(dest => dest.LastWithdrawalDate, opt => opt.MapFrom(src => src.Operations.FirstOrDefault().CreatedDate));
+
+        CreateMap<OperationEntity, OperationDto>();
+
     }
 }

@@ -8,6 +8,7 @@
         private enum ResponseType
         {
             Success,
+            BadRequest,
             NoContent,
             FunctionalError,
             Unauthorized,
@@ -87,6 +88,13 @@
         public void SetUnauthorizedErrorResponse(string messageCode, dynamic? error = null)
         {
             Status = ResponseType.Unauthorized.ToString();
+            MessageCode = messageCode;
+            Errors = error;
+        }
+        
+        public void SetValidatorResponse(string messageCode, dynamic? error = null)
+        {
+            Status = ResponseType.BadRequest.ToString();
             MessageCode = messageCode;
             Errors = error;
         }

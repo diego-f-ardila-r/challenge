@@ -5,11 +5,8 @@ using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using Metafar.Challenge.Infrastructure.Constants;
-using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -100,6 +97,7 @@ public static class ServiceExtension
 
     private static IServiceCollection AddErrorHandlerConfiguration(this IServiceCollection services)
     {
+        services.AddExceptionHandler<ValidatorExceptionHandler>();
         services.AddExceptionHandler<NoContentExceptionHandler>();
         services.AddExceptionHandler<UnauthorizedExceptionHandler>();
         services.AddExceptionHandler<FunctionalExceptionHandler> ();

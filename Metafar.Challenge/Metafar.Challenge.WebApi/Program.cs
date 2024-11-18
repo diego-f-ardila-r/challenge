@@ -9,12 +9,19 @@ using Metafar.Challenge.Repository.Queries.Card;
 using Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
 using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 using Metafar.Challenge.UseCase.Automapper;
+using Metafar.Challenge.UseCase.Operation.Queries;
 using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Metafar.Challenge.Repository.Operation.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Global configuration
 ServiceExtension.SetGlobalConfiguration(builder);
+
+// Add FluentValidation services
+builder.Services.AddFluentValidationAutoValidation();
 
 // Add Repository services
 builder.Services.AddScoped<ICardQueryRepository, CardQueryRepository>();
@@ -22,6 +29,7 @@ builder.Services.AddScoped<ICardCommandRepository, CardCommandRepository>();
 builder.Services.AddScoped<IAccountQueryRepository, AccountQueryRepository>();
 builder.Services.AddScoped<IAccountCommandRepository, AccountCommandRepository>();
 builder.Services.AddScoped<IOperationCommandRepository, OperationCommandRepository>();
+builder.Services.AddScoped<IOperationQueryRepository, OperationQueryRepository>();
 
 
 // Add auto-mapper profiles
@@ -42,6 +50,12 @@ builder.Services.AddScoped<GetAccountInformationByCardNumberHandler>();
 builder.Services.AddScoped<ResponseModel<WithdrawDto>>();
 builder.Services.AddScoped<WithdrawFromAccountCommand>();
 builder.Services.AddScoped<WithdrawFromAccountHandler>();
+
+// Add use case services for GetOperationsByCardNumber
+builder.Services.AddScoped<ResponseModel<IEnumerable<OperationDto>>>();
+builder.Services.AddScoped<GetOperationsByCardNumberQuery>();
+builder.Services.AddScoped<GetOperationsByCardNumberHandler>();
+builder.Services.AddValidatorsFromAssemblyContaining<GetOperationsByCardNumberQueryValidator>();
 
 var app = builder.Build();
 ApplicationBuilderExtension.SetGlobalApplicationBuilder(app);
