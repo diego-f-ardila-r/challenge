@@ -7,10 +7,17 @@ using Metafar.Challenge.Repository.Operation.Queries;
 using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Queries.Card;
-using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
 namespace Metafar.Challenge.UseCase.Operation.Queries;
 
+/// <summary>
+/// Handler for retrieving operations by card number.
+/// </summary>
+/// <param name="response">The response model to be populated with the result.</param>
+/// <param name="operationQueryRepository">Repository for querying operations.</param>
+/// <param name="cardQueryRepository">Repository for querying card information.</param>
+/// <param name="validator">Validator for the request.</param>
+/// <param name="mapper">Mapper for converting entities to DTOs.</param>
 public class GetOperationsByCardNumberHandler(
     ResponseModel<IEnumerable<OperationDto>> response,
     IOperationQueryRepository operationQueryRepository,
