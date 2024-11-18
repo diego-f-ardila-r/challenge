@@ -55,7 +55,7 @@ public class SignInUserByCardHandler(
         // Generate a JWT token
         response.Data = new TokenDto
         {
-            Token = JwtTokenUtility.GenerateJwtToken(card.CardNumber.ToString())
+            Token = JwtTokenUtility.GenerateJwtToken(card.CardId.ToString(), card.CardNumber.ToString())
         };
 
         return response;
