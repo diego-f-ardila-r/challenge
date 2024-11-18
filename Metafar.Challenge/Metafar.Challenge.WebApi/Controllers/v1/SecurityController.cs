@@ -14,7 +14,6 @@ public class SecurityController(IMediator mediator, SignInUserByCardQuery signIn
     /// <summary>
     /// User Sign In
     /// </summary>
-    //[Authorize]
     [HttpGet("{{cardNumber}}/{{pin}}")]
     public async Task<IActionResult> SignInAsync(int cardNumber, int pin)
     {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Metafar.Challenge.Infrastructure.Constants;
+using Metafar.Challenge.Model.Configurations;
 using Metafar.Challenge.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +25,7 @@ public static class ServiceExtension
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(SwaggerConfigurationUtility.Configure);
         
         // Add OSS configuration
         builder.Services.AddErrorHandlerConfiguration();

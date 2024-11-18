@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Metafar.Challenge.UseCase.Operation.Queries;
 using Metafar.Challenge.Dto;
 using Metafar.Challenge.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Metafar.Challenge.WebApi.Controllers.v1;
 
+[Authorize]
 [ApiController]
 [Route("v1/[controller]s")]
 public class OperationController(

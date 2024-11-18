@@ -13,6 +13,7 @@ using Metafar.Challenge.UseCase.Operation.Queries;
 using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Metafar.Challenge.Model.Configurations;
 using Metafar.Challenge.Repository.Operation.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,9 @@ ServiceExtension.SetGlobalConfiguration(builder);
 
 // Add FluentValidation services
 builder.Services.AddFluentValidationAutoValidation();
+        
+// Set Jwt authentication
+JwtAuthBuilderExtension.AddJwtAuthentication(builder);
 
 // Add Repository services
 builder.Services.AddScoped<ICardQueryRepository, CardQueryRepository>();
@@ -30,7 +34,6 @@ builder.Services.AddScoped<IAccountQueryRepository, AccountQueryRepository>();
 builder.Services.AddScoped<IAccountCommandRepository, AccountCommandRepository>();
 builder.Services.AddScoped<IOperationCommandRepository, OperationCommandRepository>();
 builder.Services.AddScoped<IOperationQueryRepository, OperationQueryRepository>();
-
 
 // Add auto-mapper profiles
 builder.Services.AddAutoMapper(typeof(ChallengeMapperProfile));

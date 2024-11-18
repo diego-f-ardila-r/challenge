@@ -1,6 +1,7 @@
 using MediatR;
 using Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
 using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Metafar.Challenge.WebApi.Controllers.v1;
@@ -8,7 +9,7 @@ namespace Metafar.Challenge.WebApi.Controllers.v1;
 /// <summary>
 /// Represents a controller for managing accounts in the API.
 /// </summary>
-/// [ApiController]
+[Authorize]
 [Route("api/v1/[controller]s")]
 public class AccountController(
     IMediator mediator, 

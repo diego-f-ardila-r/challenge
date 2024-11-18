@@ -20,15 +20,14 @@ public static class ApplicationBuilderExtension
 
         // Custom Middleware Setup
         app.AddCorrelationIdMiddleware();
-        
-        // Authorization Middleware Setup
-        app.AddJwtAuthorizationMiddleware();
-        
+      
         // Exception Handler Middleware Setup
         app.UseExceptionHandler();
 
         app.UseHttpsRedirection();
-
+        
+        app.UseAuthentication();
+        
         app.UseAuthorization();
 
         app.MapControllers();
@@ -39,9 +38,4 @@ public static class ApplicationBuilderExtension
 
     private static IApplicationBuilder AddCorrelationIdMiddleware(this IApplicationBuilder applicationBuilder)
         => applicationBuilder.UseMiddleware<CorrelationIdMiddleware>();
-    
-    private static IApplicationBuilder AddJwtAuthorizationMiddleware(this IApplicationBuilder applicationBuilder)
-        => applicationBuilder.UseMiddleware<JwtAuthorizationMiddleware>();
-    
-
 }
