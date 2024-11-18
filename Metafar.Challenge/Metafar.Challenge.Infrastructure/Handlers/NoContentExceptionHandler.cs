@@ -11,9 +11,9 @@ namespace Metafar.Challenge.Infrastructure.Handlers;
 /// <summary>
 /// Handles functional exceptions and sets the appropriate HTTP response.
 /// </summary>
-public class NoContentExceptionHandler(ILogger<NoContentException> logger) : BaseExceptionHandler<FunctionalException>(logger)
+public class NoContentExceptionHandler(ILogger<NoContentException> logger) : BaseExceptionHandler<NoContentException>(logger)
 {
-    protected override void SetErrorResponse(ResponseModel<object>? responseResult, FunctionalException exception)
+    protected override void SetErrorResponse(ResponseModel<object>? responseResult, NoContentException exception)
     {
         responseResult?.SetNoContentErrorResponse(exception.Message);
     }

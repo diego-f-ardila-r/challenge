@@ -41,7 +41,7 @@ builder.Services.AddScoped<GetAccountInformationByCardNumberHandler>();
 // Add use case services for WithdrawFromAccount
 builder.Services.AddScoped<ResponseModel<WithdrawDto>>();
 builder.Services.AddScoped<WithdrawFromAccountCommand>();
-builder.Services.AddScoped<WithdrawFromAccountCommandHandler>();
+builder.Services.AddScoped<WithdrawFromAccountHandler>();
 
 var app = builder.Build();
 ApplicationBuilderExtension.SetGlobalApplicationBuilder(app);

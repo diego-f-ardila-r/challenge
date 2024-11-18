@@ -1,3 +1,5 @@
+using System.Transactions;
+using MediatR;
 using Metafar.Challenge.Dto;
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Infrastructure.Exceptions;
@@ -5,16 +7,17 @@ using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Account.Commands;
 using Metafar.Challenge.Repository.Account.Queries;
 using Metafar.Challenge.Repository.Operation.Commands;
+using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 
 namespace Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
 
-public class WithdrawFromAccountCommandHandler(
+public class WithdrawFromAccountHandler(
     ResponseModel<WithdrawDto> response,
     IAccountQueryRepository accountQueryRepository,
     IAccountCommandRepository accountCommandRepository,
-    IOperationCommandRepository operationCommandRepository)
+    IOperationCommandRepository operationCommandRepository) : IRequestHandler<WithdrawFromAccountCommand, ResponseModel<WithdrawDto>>
 {
-    public async Task<ResponseModel<WithdrawDto>>  HandleAsync(WithdrawFromAccountCommand request)
+    public async Task<ResponseModel<WithdrawDto>>  Handle(WithdrawFromAccountCommand request, CancellationToken cancellationToken)
     {
         // Validate if there is an account using the given card number
         var account = await accountQueryRepository.GetAccountByCardNumberAsync(request.CardNumber);
@@ -30,6 +33,9 @@ public class WithdrawFromAccountCommandHandler(
             throw new FunctionalException("INSUFFICIENT_BALANCE");
         }
 
+        // open a transaction
+        using var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+        
         // Insert the operation
         var operationResult = await operationCommandRepository.InsertOperationAsync(
                 new OperationEntity
@@ -40,11 +46,14 @@ public class WithdrawFromAccountCommandHandler(
                 }
             );
         
-        // Calculate the new balance
+        // Set the new balance
         account.Balance -= request.Amount;
 
         // Update the account balance
         await accountCommandRepository.UpdateAccountBalanceAsync(account);
+        
+        // Commit the transaction
+        scope.Complete();
         
         // set response
         response.Data = new WithdrawDto

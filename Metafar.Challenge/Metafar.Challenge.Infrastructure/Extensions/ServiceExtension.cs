@@ -100,7 +100,8 @@ public static class ServiceExtension
 
     private static IServiceCollection AddErrorHandlerConfiguration(this IServiceCollection services)
     {
-        services.AddScoped<UnauthorizedException>();
+        services.AddExceptionHandler<NoContentExceptionHandler>();
+        services.AddExceptionHandler<UnauthorizedExceptionHandler>();
         services.AddExceptionHandler<FunctionalExceptionHandler> ();
         services.AddExceptionHandler<GlobalExceptionHandler> ();
         services.AddProblemDetails();

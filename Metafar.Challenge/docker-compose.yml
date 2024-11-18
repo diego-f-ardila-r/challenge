@@ -7,7 +7,6 @@ volumes:
     driver: local
 
 services:
-
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver-db
