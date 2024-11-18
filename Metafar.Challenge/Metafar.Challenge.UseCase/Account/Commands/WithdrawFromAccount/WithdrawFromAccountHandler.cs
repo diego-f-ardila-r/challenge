@@ -7,7 +7,6 @@ using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Account.Commands;
 using Metafar.Challenge.Repository.Account.Queries;
 using Metafar.Challenge.Repository.Operation.Commands;
-using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 
 namespace Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
 
