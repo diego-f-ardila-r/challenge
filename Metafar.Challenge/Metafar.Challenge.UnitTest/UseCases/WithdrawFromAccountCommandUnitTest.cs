@@ -1,4 +1,3 @@
-using Moq;
 using Metafar.Challenge.Dto;
 using Metafar.Challenge.Entity;
 using Metafar.Challenge.Infrastructure.Exceptions;
@@ -7,6 +6,9 @@ using Metafar.Challenge.Repository.Account.Commands;
 using Metafar.Challenge.Repository.Account.Queries;
 using Metafar.Challenge.Repository.Operation.Commands;
 using Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
+using Moq;
+
+namespace Metafar.Challenge.UnitTest.UseCases;
 
 public class WithdrawFromAccountHandlerTests
 {
