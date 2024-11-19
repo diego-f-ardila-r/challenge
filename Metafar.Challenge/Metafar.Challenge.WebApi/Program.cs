@@ -13,6 +13,7 @@ using Metafar.Challenge.UseCase.Operation.Queries;
 using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model.Configurations;
 using Metafar.Challenge.Repository.Operation.Queries;
 
@@ -25,6 +26,7 @@ ServiceExtension.SetGlobalConfiguration(builder);
 builder.Services.AddFluentValidationAutoValidation();
         
 // Set Jwt authentication
+builder.Services.AddTransient<JwtTokenUtility>();
 JwtAuthBuilderExtension.AddJwtAuthentication(builder);
 
 // Add Repository services
@@ -58,7 +60,7 @@ builder.Services.AddScoped<WithdrawFromAccountHandler>();
 builder.Services.AddScoped<ResponseModel<IEnumerable<OperationDto>>>();
 builder.Services.AddScoped<GetOperationsByCardNumberQuery>();
 builder.Services.AddScoped<GetOperationsByCardNumberHandler>();
-builder.Services.AddValidatorsFromAssemblyContaining<GetOperationsByCardNumberQueryValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<GetOperationsByCardNumberValidator>();
 
 var app = builder.Build();
 ApplicationBuilderExtension.SetGlobalApplicationBuilder(app);

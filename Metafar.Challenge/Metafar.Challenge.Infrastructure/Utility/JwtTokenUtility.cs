@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Metafar.Challenge.Infrastructure.Utility;
 
-public static class JwtTokenUtility
+public class JwtTokenUtility
 {
     /// <summary>
     /// Generates a JWT token.
@@ -16,7 +16,7 @@ public static class JwtTokenUtility
     /// <param name="subject"> Subject</param>
     /// <param name="username">The username to include in the token claims.</param>
     /// <returns>A JWT token as a string.</returns>
-    public static string GenerateJwtToken(string subject, string username)
+    public string GenerateJwtToken(string subject, string username)
     {
         // Set claims
         var claims = new[]
@@ -34,7 +34,7 @@ public static class JwtTokenUtility
             issuer: JwtConfigurationModel.Issuer,
             audience: JwtConfigurationModel.Audience,
             claims: claims,
-            expires: DateTime.Now.AddMinutes(JwtConfigurationModel.ExpireMinutes),
+            expires: DateTime.Now.AddMinutes(JwtConfigurationModel.ExpireMinutes ?? 60),
             signingCredentials: credentials
         );
 

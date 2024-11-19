@@ -12,7 +12,7 @@ public class CardQueryRepository(MetafarDbContext context) : EntityFrameworkBase
     /// <param name="cardNumber">The card number to search for.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the card model if found; otherwise, null.</returns>
     /// <remarks>Access is through SQL Server.</remarks>
-    public async Task<CardEntity?> GetCardByCardNumberAsync(int cardNumber)
+    public async Task<CardEntity?> GetCardByNumberAsync(int cardNumber)
     {
         return await context.Set<CardEntity>().FirstOrDefaultAsync(c => c.CardNumber == cardNumber);
     }

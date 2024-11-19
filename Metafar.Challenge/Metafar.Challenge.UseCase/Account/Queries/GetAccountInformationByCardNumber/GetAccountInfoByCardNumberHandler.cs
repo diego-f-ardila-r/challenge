@@ -4,11 +4,12 @@ using Metafar.Challenge.Dto;
 using Metafar.Challenge.Infrastructure.Exceptions;
 using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Account.Queries;
+using Metafar.Challenge.UseCase.Constants;
 
 namespace Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
 
 /// <summary>
-/// Handler for the <see cref="GetAccountInfoQuery"/>.
+/// Handles the query to get account information by card number.
 /// </summary>
 public class GetAccountInformationByCardNumberHandler(
     ResponseModel<AccountUserDto> response,
@@ -16,12 +17,6 @@ public class GetAccountInformationByCardNumberHandler(
     IMapper mapper
     ) : IRequestHandler<GetAccountInfoByCardNumberQuery, ResponseModel<AccountUserDto>>
 {
-    /// <summary>
-    /// Handles the query to get account information by card number.
-    /// </summary>
-    /// <param name="request">The query request.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>The account entity if found; otherwise, null.</returns>
     public async Task<ResponseModel<AccountUserDto>> Handle(GetAccountInfoByCardNumberQuery request, CancellationToken cancellationToken)
     {
         // retrieve the account by card number
@@ -32,7 +27,7 @@ public class GetAccountInformationByCardNumberHandler(
         
         // validate if the account was found
         if (account == null)
-            throw new NoContentException("ACCOUNT_NOT_FOUND");
+            throw new NoContentException(MessageCodeConstant.AccountNotFound);
         
         return response;
     }

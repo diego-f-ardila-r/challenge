@@ -1,19 +1,17 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Blazored.LocalStorage;
 using Metafar.Challenge.WebApp.Components;
-using Metafar.Challenge.WebApp.Components.Shared;
 using Metafar.Challenge.WebApp.Services;
 using Metafar.Challenge.WebApp.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // configure metafar services
-builder.Services.AddHttpClient<MetafarServices>(client =>
+builder.Services.AddHttpClient<MetafarService>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5000");
+    client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("METAFAR_URL_BASE"));
     client.DefaultRequestHeaders.Add("Accept", "application/json");
-    client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0YjVkNDZlZC1kMmVmLTRhNzAtOWNjYS0zYzMzMTAwNTAwNDgiLCJuYW1lIjoiMTIzNDU2NzgiLCJleHAiOjE3MzE5ODUzMzMsImlzcyI6Ik1FVEFGQVIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvIn0.1ptzTLWqMomlOGfdzlhhWRAekpjhtn5GTw30K08c2cc");
 });
 
 // Add services to the container.
@@ -24,9 +22,13 @@ builder.Services.AddRazorComponents()
 builder.Services.AddBlazoredLocalStorage();
 
 // Add services for view models
+builder.Services.AddScoped<LoginViewModel>();
 builder.Services.AddScoped<AccountViewModel>();
 builder.Services.AddScoped<OperationViewModel>();
 builder.Services.AddScoped<WithdrawViewModel>();
+
+// add blazor bootstrapper
+builder.Services.AddBlazorBootstrap();
 
 var app = builder.Build();
 

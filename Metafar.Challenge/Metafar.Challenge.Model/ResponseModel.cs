@@ -22,7 +22,7 @@
         /// <summary>
         /// Contains the response status ["Success", "NoContent", "FunctionalError", "Error"]
         /// </summary>
-        public string? Status { get; set; }
+        public string Status { get; set; } = ResponseType.Success.ToString();
 
         /// <summary>
         /// Response Languge standarized with Alpha 2 ["ES", "EN"]

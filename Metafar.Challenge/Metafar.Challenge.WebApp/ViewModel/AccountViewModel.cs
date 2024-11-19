@@ -4,10 +4,19 @@ using Metafar.Challenge.WebApp.Services;
 
 namespace Metafar.Challenge.WebApp.ViewModel;
 
-public class AccountViewModel(MetafarServices metafarService) : INotifyPropertyChanged
+public class AccountViewModel(MetafarService metafarService) : INotifyPropertyChanged
 {
+    private double _balance;
     public string? AccountNumber { get; set; }
-    public double Balance { get; set; }
+    
+    public double Balance {
+        get => _balance;
+        set
+        {
+            _balance = value ;
+            OnPropertyChanged();
+        }
+    }
     public DateTime LastWithdrawalDate { get; set; }
     public string? UserName { get; set; }
     public string? FullName { get; set; }
@@ -36,7 +45,6 @@ public class AccountViewModel(MetafarServices metafarService) : INotifyPropertyC
             UserName = account.UserName;
             FullName = account.FullName;
         }
-
         return this;
     }
 

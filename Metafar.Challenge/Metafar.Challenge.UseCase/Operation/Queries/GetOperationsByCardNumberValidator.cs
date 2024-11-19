@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace Metafar.Challenge.UseCase.Operation.Queries;
 
-public class GetOperationsByCardNumberQueryValidator : AbstractValidator<GetOperationsByCardNumberQuery>
+public class GetOperationsByCardNumberValidator : AbstractValidator<GetOperationsByCardNumberQuery>
 {
-    public GetOperationsByCardNumberQueryValidator()
+    public GetOperationsByCardNumberValidator()
     {
         RuleFor(x => x.CardNumber)
             .GreaterThan(0).WithMessage("Card number must be greater than 0.");

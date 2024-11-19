@@ -41,7 +41,7 @@ public class WithdrawFromAccountHandlerTests
             .ReturnsAsync(value: null);
 
         // Act & Assert
-        await Assert.ThrowsAsync<NotImplementedException>(() => _handler.Handle(request, CancellationToken.None));
+        await Assert.ThrowsAsync<NoContentException>(() => _handler.Handle(request, CancellationToken.None));
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public class WithdrawFromAccountHandlerTests
 
         // Act & Assert
         var result = await Assert.ThrowsAsync<FunctionalException>(() => _handler.Handle(request, CancellationToken.None));
-        Assert.Equal("INSUFFICIENT_BALANCE", result.Message);
+        Assert.Equal("INSUFFICIENT_FUNDS", result.Message);
     }
 
     [Fact]

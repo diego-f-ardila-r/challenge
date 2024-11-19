@@ -7,9 +7,13 @@ using Metafar.Challenge.Model;
 using Metafar.Challenge.Repository.Account.Commands;
 using Metafar.Challenge.Repository.Account.Queries;
 using Metafar.Challenge.Repository.Operation.Commands;
+using Metafar.Challenge.UseCase.Constants;
 
 namespace Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
 
+/// <summary>
+/// Handler for withdrawing from an account.
+/// </summary>
 public class WithdrawFromAccountHandler(
     ResponseModel<WithdrawDto> response,
     IAccountQueryRepository accountQueryRepository,
@@ -23,13 +27,13 @@ public class WithdrawFromAccountHandler(
         
         if (account == null)
         {
-            throw new NoContentException("ACCOUNT_NOT_FOUND");
+            throw new NoContentException(MessageCodeConstant.AccountNotFound);
         }
 
         // Validate if the account has enough balance to withdraw
         if (account.Balance < request.Amount)
         {
-            throw new FunctionalException("INSUFFICIENT_BALANCE");
+            throw new FunctionalException(MessageCodeConstant.InsufficientFunds);
         }
 
         // open a transaction

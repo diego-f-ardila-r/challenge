@@ -1,7 +1,7 @@
 @page "/account/{cardNumber:int}"
 @using Metafar.Challenge.WebApp.Services
 @using Metafar.Challenge.WebApp.ViewModel
-@inject MetafarServices MetafarService
+@inject MetafarService MetafarService
 @inject AccountViewModel account
 @inject NavigationManager Navigation
 
@@ -126,14 +126,26 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // get cardNumber front query string cardNumber
-        if (CardNumber > 0)
+        if (CardNumber == 0) 
+            Navigation.NavigateTo("/Login");
+        
+    }
+    
+    // set call after the component is rendered
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
         {
-            await account?.GetAccountViewModel(CardNumber);
-        }
-        else
-        {
-            Navigation.NavigateTo("/");
+            // get cardNumber front query string cardNumber
+            if (CardNumber > 0)
+            {
+                await account?.GetAccountViewModel(CardNumber);
+                StateHasChanged();
+            }
+            else
+            {
+                Navigation.NavigateTo("/");
+            }
         }
     }
 
