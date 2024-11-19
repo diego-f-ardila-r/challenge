@@ -21,7 +21,7 @@
         "JWT_SECRET": "70FC177F-3667-453D-9DA1-AF223DF6C014",
         "JWT_ISSUER": "METAFAR",
         "JWT_AUDIENCE": "http://localhost:5000/",
-        "JWT_EXPIRATION_MINUTES": "60"
+        "JWT_EXPIRATION_MINUTES": "120"
       }
     },
     "https": {

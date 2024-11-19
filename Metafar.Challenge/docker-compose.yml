@@ -33,17 +33,19 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       #DB_CONNECTION: Server=host.docker.internal,1433;Initial Catalog=metafar.challenge.db;Persist Security Info=False;User ID=sa;Password=Password12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;
-      DB_CONNECTION: Server=sqlserver; Database=metafar.challenge.db; User=sa; Password=Password12345
+      DB_CONNECTION: Server=sqlserver-db; Database=metafar.challenge.db; User=sa; Password=Password12345
       JWT_SECRET: 1a382c6e-fa61-4fa1-87ac-0f3ed5aca962
       JWT_ISSUER: METAFAR
-      JWT_AUDIENCE: METAFAR_CHALLENGE
-      JWT_EXPIRATION_MINUTES: 60
+      JWT_AUDIENCE: http://localhost:5000/
+      JWT_EXPIRATION_MINUTES: 120
     build:
       context: .
       dockerfile: Dockerfile
 
   metafar.challenge.webapp:
     image: metafar.challenge.webapp
+    networks:
+      - app-metafar-network-public
     build:
       context: .
       dockerfile: Metafar.Challenge.WebApp/Dockerfile
