@@ -41,3 +41,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+
+  metafar.challenge.webapp:
+    image: metafar.challenge.webapp
+    build:
+      context: .
+      dockerfile: Metafar.Challenge.WebApp/Dockerfile
