@@ -1,8 +1,10 @@
-@page "/account"
+@page "/account/{cardNumber:int}"
 @using Metafar.Challenge.WebApp.Services
 @using Metafar.Challenge.WebApp.ViewModel
 @inject MetafarServices MetafarService
 @inject AccountViewModel account
+@inject NavigationManager Navigation
+
 @rendermode InteractiveServer
 
 <PageTitle>Account Information</PageTitle>
@@ -47,33 +49,38 @@
                                 <p>@account.LastWithdrawalDate.ToString("MMMM dd, yyyy")</p>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-primary btn-sm" @onclick="ToggleOperations">Ver Operaciones</button>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-primary btn-sm" @onclick="GoToWithdrawPage">Ir a extracciónes</button>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-outline-secondary w-100" @onclick="ToggleOperations">
-                                    <i class="fas fa-list"></i> @(showOperations ? "Hide Operations" : "Show Operations")
-                                </button>
                                 <div class="mt-3" style="display:@(showOperations ? "block" : "none")">
                                     @if (account.Operations?.Any() ?? false)
                                     {
                                         <table class="table table-striped">
                                             <thead>
-                                                <tr>
-                                                    
-                                                    <th>Monto</th>
-                                                    <th>Tipo Operación</th>
-                                                    <th>Date</th>
-                                                </tr>
+                                            <tr>
+
+                                                <th>Monto</th>
+                                                <th>Tipo Operación</th>
+                                                <th>Date</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (var operation in account.Operations)
-                                                {
-                                                    <tr>
-                                                        <td>@operation.Amount.ToString("C")</td>
-                                                        <td>@operation.OperationType</td>
-                                                        <td>@operation.CreatedDate.ToString("MMMM dd, yyyy")</td>
-                                                    </tr>
-                                                }
+                                            @foreach (var operation in account.Operations)
+                                            {
+                                                <tr>
+                                                    <td>@operation.Amount.ToString("C")</td>
+                                                    <td>@operation.OperationType</td>
+                                                    <td>@operation.CreatedDate.ToString("MMMM dd, yyyy")</td>
+                                                </tr>
+                                            }
                                             </tbody>
                                         </table>
                                         <nav>
@@ -111,26 +118,35 @@
 </div>
 
 @code {
-    int cardNumber = 12345678; // Replace with the actual card number
+    [Parameter]
+    public int CardNumber { get; set; }
     int page = 1;
     int pageSize = 10;
     bool showOperations = false;
 
     protected override async Task OnInitializedAsync()
     {
-        await account?.GetAccountViewModel(cardNumber);
+        // get cardNumber front query string cardNumber
+        if (CardNumber > 0)
+        {
+            await account?.GetAccountViewModel(CardNumber);
+        }
+        else
+        {
+            Navigation.NavigateTo("/");
+        }
     }
 
     private async Task GetOperations()
     {
-        await account.GetOperations(cardNumber, page, pageSize);
+        await account.GetOperations(CardNumber, page, pageSize);
     }
 
     private async Task ToggleOperations()
     {
         showOperations = !showOperations;
         
-        if(!showOperations)
+        if(showOperations)
             await GetOperations();
     }
 
@@ -150,5 +166,10 @@
             page++;
             await GetOperations();
         }
+    }
+
+    private void GoToWithdrawPage()
+    {
+        Navigation.NavigateTo($"/withdraw/{account.AccountNumber}/{CardNumber}");
     }
 }

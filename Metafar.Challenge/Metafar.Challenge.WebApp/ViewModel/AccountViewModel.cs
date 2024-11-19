@@ -6,19 +6,10 @@ namespace Metafar.Challenge.WebApp.ViewModel;
 
 public class AccountViewModel(MetafarServices metafarService) : INotifyPropertyChanged
 {
-    [DisplayName("Número de cuenta")]
     public string? AccountNumber { get; set; }
-
-    [DisplayName("Saldo")]
     public double Balance { get; set; }
-
-    [DisplayName("Ultima extracción")]
     public DateTime LastWithdrawalDate { get; set; }
-
-    [DisplayName("Usuario")]
     public string? UserName { get; set; }
-
-    [DisplayName("Nombre")]
     public string? FullName { get; set; }
 
     private List<OperationViewModel> _operations = new();

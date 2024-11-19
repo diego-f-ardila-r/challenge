@@ -21,7 +21,7 @@ public class OperationQueryRepository(MetafarDbContext context) : EntityFramewor
         // Query for operations with filtering and paging in a single query
         var query = context.Operations
             .Where(o => o.Account.Cards.Any(c => c.CardNumber == cardNumber))
-            .OrderBy(o => o.CreatedDate);
+            .OrderByDescending(o => o.CreatedDate);
 
         // Get total count and paginated data in a single trip to the database
         var totalOperations = await query.CountAsync();

@@ -23,7 +23,7 @@ public class WithdrawFromAccountHandler(
         
         if (account == null)
         {
-            throw new NotImplementedException("ACCOUNT_NOT_FOUND");
+            throw new NoContentException("ACCOUNT_NOT_FOUND");
         }
 
         // Validate if the account has enough balance to withdraw

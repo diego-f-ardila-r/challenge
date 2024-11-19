@@ -22,7 +22,7 @@ public class MetafarServices(HttpClient httpClient)
         return accountInfo;
     }
     
-    public async Task<ResponseModel<WithdrawDto>?> WithdrawFromAccountAsync(string cardNumber, double amount)
+    public async Task<ResponseModel<WithdrawDto>?> WithdrawFromAccountAsync(int cardNumber, double amount)
     {
         var withdraw = new
         {

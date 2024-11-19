@@ -7,6 +7,8 @@
 @using Metafar.Challenge.WebApp.ViewModel
 @using Microsoft.AspNetCore.Components.Forms
 @inject ILocalStorageService LocalStorage
+@inject NavigationManager Navigation
+
 @rendermode InteractiveServer
 
 
@@ -56,6 +58,7 @@
         {
             await LocalStorage.SetItemAsync("token", $"{token}");
             
+            Navigation.NavigateTo($"/account/{loginModel.CardNumber}");
         }
     }
 }
