@@ -40,7 +40,7 @@ public static class ServiceExtension
         //Set db context configuration
         builder.Services.AddDbContext<MetafarDbContext>(options =>
         {
-            options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION"));
+            options.UseSqlServer(Environment.GetEnvironmentVariable("DB"));
         });
         
         // Set AppSettings configuration
