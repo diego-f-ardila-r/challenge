@@ -8,13 +8,13 @@ namespace Metafar.Challenge.WebApi.Controllers.v1;
 /// Represents a controller for the APP's Security.
 /// </summary>
 /// [ApiController]
-[Route("api/v1/[controller]")]
+[Route("v1/[controller]")]
 public class SecurityController(IMediator mediator, SignInUserByCardQuery signInUserByCardQuery) : Controller
 {
     /// <summary>
     /// User Sign In
     /// </summary>
-    [HttpGet("{{cardNumber}}/{{pin}}")]
+    [HttpGet("{cardNumber}/{pin}")]
     public async Task<IActionResult> SignInAsync(int cardNumber, int pin)
     {
         signInUserByCardQuery.CardNumber = cardNumber;

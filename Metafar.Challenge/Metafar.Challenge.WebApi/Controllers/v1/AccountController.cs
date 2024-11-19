@@ -10,7 +10,7 @@ namespace Metafar.Challenge.WebApi.Controllers.v1;
 /// Represents a controller for managing accounts in the API.
 /// </summary>
 [Authorize]
-[Route("api/v1/[controller]s")]
+[Route("v1/[controller]s")]
 public class AccountController(
     IMediator mediator, 
     GetAccountInfoByCardNumberQuery getAccountInfoBayCardQuery
