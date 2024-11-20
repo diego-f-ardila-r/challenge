@@ -20,6 +20,12 @@ El proyecto implementa las siguientes funcionalidades clave:
 4. **Vista de operaciones con paginación**
 5. **Extracción de la cuenta**
 
+## Arquitectura y patrones implementados
+1. Basada en servicios.
+2. Mediator.
+3. CQRS a nivel de clases.
+4. Repository.
+
 ## Tecnologías Utilizadas
 
 ### Backend
@@ -112,6 +118,17 @@ La API está documentada con Swagger y puede accederse en la siguiente URL:
     **Credenciales de base de datos**:
     - **Usuario**: `sa`
     - **Contraseña**: `Password12345`
+  
+## Casos de prueba
+### Caso 1: Usuario con tarjeta bloqueda.
+    - **NumeroTarjeta**: `34567890`
+    - **Pin**: `9012`
+### Caso 2: Usuario con acceso a cuenta.
+    - **NumeroTarjeta**: `12345678`
+    - **Pin**: `1234`
+### Caso 3: Usuario con 4 intentos fallidos en el pin, con un intento erroneo mas se bloqueara la tarjeta.
+    - **NumeroTarjeta**: `23456789`
+    - **Pin**: `5678`
 
 ## Notas
 
