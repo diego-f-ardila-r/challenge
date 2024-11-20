@@ -20,6 +20,18 @@ El proyecto implementa las siguientes funcionalidades clave:
 4. **Vista de operaciones con paginación**
 5. **Extracción de la cuenta**
 
+## Endpoints
+
+La API está documentada con Swagger y puede accederse en la siguiente URL (Solo acceso loca):  
+[Swagger UI](http://localhost:5000/swagger/index.html)
+
+### Rutas Disponibles
+
+- **`GET /v1/security/{cardNumber}/{pin}`**: Genera un token de autorización.
+- **`GET /v1/accounts/{cardNumber}`**: Obtiene la información de la cuenta asociada al número de tarjeta.
+- **`GET /v1/operations/{cardNumber}`**: Obtienes las operaciones realizadas en la cuenta.
+- **`POST /v1/accounts/balance/withdraw`**: Realiza una extracción de saldo desde la cuenta.
+
 ## Arquitectura y patrones implementados
 1. Basada en servicios.
 2. Mediator.
@@ -87,17 +99,6 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 
 - **`METAFAR_URL_BASE`**: URL base para la aplicación web.
 
-## Endpoints
-
-La API está documentada con Swagger y puede accederse en la siguiente URL:  
-[Swagger UI](http://localhost:5000/swagger/index.html)
-
-### Rutas Disponibles
-
-- **`GET /v1/security/{cardNumber}/{pin}`**: Genera un token de autorización.
-- **`GET /v1/accounts/{cardNumber}`**: Obtiene la información de la cuenta asociada al número de tarjeta.
-- **`POST /v1/accounts/balance/withdraw`**: Realiza una extracción de saldo desde la cuenta.
-
 ## Ejecución del Proyecto
 
 1. Construye y levanta los contenedores utilizando Docker Compose:
@@ -126,7 +127,7 @@ La API está documentada con Swagger y puede accederse en la siguiente URL:
 ### Caso 2: Usuario con acceso a cuenta.
     - **NumeroTarjeta**: `12345678`
     - **Pin**: `1234`
-### Caso 3: Usuario con 4 intentos fallidos en el pin, con un intento erroneo mas se bloqueara la tarjeta.
+### Caso 3: Usuario con 2 intentos fallidos en el pin, con dos intentos erroneos mas se bloqueara la tarjeta.
     - **NumeroTarjeta**: `23456789`
     - **Pin**: `5678`
 
