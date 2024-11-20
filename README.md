@@ -7,8 +7,8 @@ Este documento describe la solución implementada para el *challenge de Metafar*
 
 - **Web API**: API RESTful que gestiona la lógica de negocio.
 - **Aplicación Web**: Interfaz de usuario para interactuar con la API.
-- **Diagrama Entidad-Relación**: Representación gráfica de la base de datos.
-- **Data dummy**: Script de BBDD con datos dummy para realizar pruebas.
+- **Diagrama Entidad-Relación**: Representación gráfica de la base de datos (doc/DER.jpg o metafar-challenge-der.drawio).
+- **Data dummy**: Script de BBDD con datos dummy para realizar pruebas (src/Metafar.Challenge.Db).
 
 ## Funcionalidades
 
@@ -137,7 +137,7 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 ### Caso 3: Usuario con 2 intentos fallidos en el pin, con dos intentos erroneos mas se bloqueara la tarjeta.
     - **NumeroTarjeta**: `23456789`
     - **Pin erroneo**: `5675`
-    - **Pin correcto**: `5675`
+    - **Pin correcto**: `5678`
 
 ## 📝 Notas
 
