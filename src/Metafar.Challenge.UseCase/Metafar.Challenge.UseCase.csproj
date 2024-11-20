@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Account\Queries\" />
+      <Folder Include="Operation\Commands\" />
+      <Folder Include="Security\Commands\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Metafar.Challenge.Dto\Metafar.Challenge.Dto.csproj" />
+      <ProjectReference Include="..\Metafar.Challenge.Infrastructure\Metafar.Challenge.Infrastructure.csproj" />
+      <ProjectReference Include="..\Metafar.Challenge.Model\Metafar.Challenge.Model.csproj" />
+      <ProjectReference Include="..\Metafar.Challenge.Repository\Metafar.Challenge.Repository.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="13.0.1" />
+      <PackageReference Include="FluentValidation" Version="11.11.0" />
+      <PackageReference Include="MediatR" Version="12.4.1" />
+    </ItemGroup>
+
+</Project>
