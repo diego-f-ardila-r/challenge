@@ -121,11 +121,12 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
     **Credenciales de base de datos**:
     - **Usuario**: `sa`
     - **Contraseña**: `Password12345`
+
+ ### El script de bbdd con datos dummy se encuentra en el siguiente directorio
     ```bash
     /src/Metafar.Challenge.Db/dummy-data-db.sql
     ```
     
-  
 ## 🧪 Casos de prueba
 ### Caso 1: Usuario con tarjeta bloqueda.
     - **NumeroTarjeta**: `34567890`
@@ -135,7 +136,8 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
     - **Pin**: `1234`
 ### Caso 3: Usuario con 2 intentos fallidos en el pin, con dos intentos erroneos mas se bloqueara la tarjeta.
     - **NumeroTarjeta**: `23456789`
-    - **Pin**: `5678`
+    - **Pin erroneo**: `5675`
+    - **Pin correcto**: `5675`
 
 ## 📝 Notas
 
