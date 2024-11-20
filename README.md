@@ -9,6 +9,7 @@ Este documento describe la solución implementada para el *challenge* de Metafar
 - **Web API**: API RESTful que gestiona la lógica de negocio.
 - **Aplicación Web**: Interfaz de usuario para interactuar con la API.
 - **Diagrama Entidad-Relación**: Representación gráfica de la base de datos.
+- **Data dummy**: Script de BBDD con datos dummy para realizar pruebas.
 
 ## Funcionalidades
 
@@ -33,10 +34,10 @@ La API está documentada con Swagger y puede accederse en la siguiente URL (Solo
 - **`POST /v1/accounts/balance/withdraw`**: Realiza una extracción de saldo desde la cuenta.
 
 ## Arquitectura y patrones implementados
-1. Basada en servicios.
-2. Mediator.
-3. CQRS a nivel de clases.
-4. Repository.
+1. La arquitectura de la solucion esta basada en servicios.
+2. Implementa el patron mediator para la comunicacion entre la capa de presentacion y la logica de negocio.
+3. CQRS solo a nivel de clases y objetos(NO BBDD).
+4. Patron Repository para acceso a datos.
 
 ## Tecnologías Utilizadas
 
