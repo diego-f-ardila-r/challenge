@@ -109,7 +109,7 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 2. La API estará disponible en: `http://localhost:5000`.
 3. La aplicación web estará disponible en: `http://localhost:5001`.
 4. El proyecto crea automáticamente la base de datos mediante migraciones de Entity Framework.
-5. Una vez los servicios estén en ejecución, conéctate a la base de datos y ejecuta el siguiente script SQL para insertar datos de prueba:
+5. Una vez los servicios estén en ejecución, conéctate a la base de datos  **metafar.challenge.db ** y ejecuta el siguiente script SQL para insertar datos de prueba:
 
     ```bash
     /src/Metafar.Challenge.Db/dummy-data-db.sql
