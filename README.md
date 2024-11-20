@@ -103,7 +103,7 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 
 1. Construye y levanta los contenedores utilizando Docker Compose:
     ```bash
-    docker-compose up --build
+    docker compose up -d
     ```
 
 2. La API estará disponible en: `http://localhost:5000`.
