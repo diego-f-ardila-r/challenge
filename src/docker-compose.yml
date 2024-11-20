@@ -1,0 +1,57 @@
+﻿networks:
+  app-metafar-network-public:
+    driver: bridge
+
+volumes:
+  sql_data:
+    driver: local
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    networks:
+      - app-metafar-network-public
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Password12345"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sql_data:/var/opt/mssql
+    restart: unless-stopped
+
+  webapi:
+    image: metafar.challenge.webapi:dev
+    container_name: webapi
+    networks:
+      - app-metafar-network-public
+    depends_on:
+      - sqlserver
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DB: "Server=sqlserver;Database=metafar.challenge.db;User Id=sa;Password=Password12345;Encrypt=False;"
+      JWT_SECRET: 1a382c6e-fa61-4fa1-87ac-0f3ed5aca962
+      JWT_ISSUER: METAFAR
+      JWT_AUDIENCE: http://localhost:5000/
+      JWT_EXPIRATION_MINUTES: 120
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  webapp:
+    image: metafar.challenge.webapp:v1
+    container_name: webapp
+    networks:
+      - app-metafar-network-public
+    depends_on:
+      - webapi
+    ports:
+      - "5001:8080"
+    environment:
+      METAFAR_URL_BASE: http://webapi:8080
+    build:
+      context: .
+      dockerfile: Metafar.Challenge.WebApp/Dockerfile
