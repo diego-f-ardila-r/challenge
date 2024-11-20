@@ -1,4 +1,4 @@
-# 📘 Documentación del Proyecto
+#📘 Documentación del Proyecto
 
 ## Introducción
 
@@ -32,13 +32,13 @@ La API está documentada con Swagger y puede accederse en la siguiente URL (Solo
 - **`GET /v1/operations/{cardNumber}`**: Obtienes las operaciones realizadas en la cuenta.
 - **`POST /v1/accounts/balance/withdraw`**: Realiza una extracción de saldo desde la cuenta.
 
-## 🏗️ Arquitectura y patrones implementados
+##🏗️ Arquitectura y patrones implementados
 1. La arquitectura de la solucion esta basada en servicios.
 2. Implementa el patron mediator para la comunicacion entre la capa de presentacion y la logica de negocio.
 3. CQRS solo a nivel de clases y objetos(NO BBDD).
 4. Patron Repository para acceso a datos.
 
-## Tecnologías Utilizadas
+##🛠️ Tecnologías Utilizadas
 
 ### Backend
 
@@ -54,7 +54,7 @@ La API está documentada con Swagger y puede accederse en la siguiente URL (Solo
 - **JavaScript**: Lenguaje de programación para la lógica del frontend.
 - **HTML**: Lenguaje de marcado para estructurar la interfaz de usuario.
 
-## Instrucciones para configurar el proyecto localmente
+##🚀 Instrucciones para configurar el proyecto localmente
 
 ### Pre-requisitos
 
@@ -66,7 +66,7 @@ Antes de comenzar, asegúrate de tener instalados los siguientes componentes en 
 - Visual Studio o Visual Studio Code
 - SQL Server Management Studio o herramienta similar
 
-### 🚀 Configuración local para iniciar aplicación y servicios
+### Configuración local para iniciar aplicación y servicios
 
 1. Clona el repositorio:
 
@@ -102,7 +102,6 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 ## Ejecución del Proyecto
 
 1. Construye y levanta los contenedores utilizando Docker Compose:
-
     ```bash
     docker-compose up --build
     ```
@@ -131,7 +130,7 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
     - **NumeroTarjeta**: `23456789`
     - **Pin**: `5678`
 
-## Notas
+##📝 Notas
 
 - Asegúrate de que los puertos **1433**, **5000** y **5001** estén libres en tu máquina local.
 - Puedes modificar las variables de entorno en el archivo `docker-compose.yml` según tus necesidades.
