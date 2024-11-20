@@ -12,7 +12,7 @@ namespace Metafar.Challenge.WebApi.Controllers.v1;
 public class SecurityController(IMediator mediator, SignInUserByCardQuery signInUserByCardQuery) : Controller
 {
     /// <summary>
-    /// User Sign In
+    /// Get a token by card number and pin.
     /// </summary>
     [HttpGet("{cardNumber}/{pin}")]
     public async Task<IActionResult> SignInAsync(int cardNumber, int pin)

@@ -13,6 +13,7 @@ using Metafar.Challenge.UseCase.Operation.Queries;
 using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Metafar.Challenge.Infrastructure.Configurations;
 using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model.Configurations;
 using Metafar.Challenge.Repository.Operation.Queries;
