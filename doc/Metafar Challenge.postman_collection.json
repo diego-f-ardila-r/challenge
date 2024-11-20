@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "7308ed26-551d-40f1-a838-d1450177d71b",
+		"name": "Metafar Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39797101"
+	},
+	"item": [
+		{
+			"name": "Get access token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/v1/security/23456789/5678",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"security",
+						"23456789",
+						"5678"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'GET' \\\n  'http://localhost:5000/api/v1/security/{cardnumber}/{pin}?cardNumber=12345678&pin=1234' \\\n  -H 'accept: */*'"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAccounUserByCard",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTIzNDU2NzgiLCJleHAiOjE3MzE5NDcwNjF9.20ehy0_sxPYOrWd8UnwoSTn_XuKpkx9u_-G8xYOGuaw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/accounts/23456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"23456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get operations by card number",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0YjVkNDZlZC1kMmVmLTRhNzAtOWNjYS0zYzMzMTAwNTAwNDgiLCJuYW1lIjoiMTIzNDU2NzgiLCJleHAiOjE3MzE5NDczMTgsImlzcyI6Ik1FVEFGQVIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvIn0.PcK03NEsDqQsehgb5FVCMD7jglQ8l0xcySfF7Dyw4k4"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/v1/operations/23456789?pageNumber=1&pageSize=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"operations",
+						"23456789"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Withdraw",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlYTAwYjlmOC01M2VlLTRiYzEtYjE3OC1hNmEzZGFmM2ZiODciLCJuYW1lIjoiMjM0NTY3ODkiLCJleHAiOjE3MzIwNTM2NjEsImlzcyI6Ik1FVEFGQVIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvIn0.c1qKP4NK-Aq58D9rK0PIMW94o2qaJRarpnZnV4b8pT4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0YjVkNDZlZC1kMmVmLTRhNzAtOWNjYS0zYzMzMTAwNTAwNDgiLCJuYW1lIjoiMTIzNDU2NzgiLCJleHAiOjE3MzE5NzcyNTEsImlzcyI6Ik1FVEFGQVIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvIn0.s_nr6FJep44YR38yOMNW-STQjcWLmMWYiKx6D-BQoMU"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cardNumber\": 23456789,\n  \"amount\": 500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/accounts/balance/withdraw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"accounts",
+						"balance",
+						"withdraw"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
