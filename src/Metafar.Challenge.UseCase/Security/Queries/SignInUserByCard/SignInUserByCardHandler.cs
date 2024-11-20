@@ -46,7 +46,7 @@ public class SignInUserByCardHandler(
         if (card.AccessPin != request.Pin) 
         {
             // Validate if FailedAttempts is greater than 4, which means the card must be blocked
-            if (card.FailedAttempts >= 3)
+            if (card.FailedAttempts > 3)
             {
                 await cardCommandRepository.BlockCardAsync(card);
                 throw new FunctionalException(MessageCodeConstant.CardHasBeenBlocked);
