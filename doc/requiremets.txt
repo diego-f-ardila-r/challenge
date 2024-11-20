@@ -1,0 +1,102 @@
+/Challenge .Net
+Metafar
+
+
+Ejercicio
+Se requiere desarrollar una API que permita las siguientes operaciones.
+
+Endpoints:
+	•	Endpoint Login: la api debe de contar con un endpoint donde dado un número de tarjeta y un pin, el sistema debe validar que ambos son correctos y se condicen entre ellos. El endpoint debe retornar un token JWT el cual será utilizado para acceder a los otros endpoints. El usuario puede ingresar un PIN invalido hasta 4 veces, luego de esto la tarjeta debe quedar bloqueada y ya no permitir el acceso.
+        Tasks:
+
+	•	Endpoint Saldo: la api debe de contar con un endpoint el cual dado un nro de tarjeta retorne la siguiente informacion: nombre del usuario, numero de cuenta, saldo actual y fecha de la última extracción.
+        Tasks:        
+        
+	•	Endpoint Retiro: la api debe contar con un endpoint el cual dado un número de tarjeta y un montón, le permita realizar una extracción. En caso de que el monto a retirar sea superior al saldo disponible de la tarjeta, el endpoint debe de retornar un código de error. En caso de que todo sea correcto se debe retornar un resumen de la operación realizada.
+        
+	•	Endpoint Operaciones: la api debe de contar con un endpoint el cual dado un número de tarjeta debe retornar el historial de todas las operaciones realizadas. Dicha respuesta debe de estar paginada, es decir, no debe devolver el historial todo junto, sino que lo debe de hacer en páginas de 10 registros.
+       
+Tarea
+	•	Crear la base de datos y todos los objetos que creas necesarios para que la aplicación funciones.
+        
+	•	Insertar una cantidad mínima de datos para poder probar la aplicación.
+        
+	•	Desarrollar una aplicación web, en un repositorio público, utilizando una herramienta de versionado como github/bitbucket/etc, que responda a los requisitos descriptos por el cliente.
+        
+
+
+
+	•	Entregar un diagrama de entidad relación de las tablas planteadas (DER) 1
+
+Notas Técnicas
+La arquitectura de la aplicación tiene que contener un proyecto de API Rest.
+
+	•	Base de datos:
+	•	Relacional (Sql Server 2022, Mysql 8.0.15, PostgreSQL 14)  
+
+El stack tecnológico deberá ser
+	•	Para la API (elegir una opción):
+	•	.Net Core >= 6 (deseable utilizar swagger)
+
+	•	Para acceso de base de datos:
+	•	Entity Framework (deseable utilizar patron Repository)
+
+
+
+
+
+Tareas
+
+        BACKEND
+        * Modelo de datos                                                   1 DONE
+        * Popular datos                                                     1 DONE
+        * Foundation app                                                    1 DONE
+
+        * Implementar patron repository con entity framework                2 DONE
+
+        * JWT Token generation                                              2 DONE
+        * JWT token set authorization configura                             2 DONE
+        * Crear endpoint con business logic de validacion de tarjeta        3 DONE 
+                unit testing                                                2 DONE
+        
+        * Crear endpoint de consulta de saldo y datos de usuario            2 DONE
+        * Crear endpoint de extraccion                                      2 DONE
+        * Crear endpoint operaciones con paginacion                         3 DONE
+
+        * Documentar inicio proyecto localmente                             2
+
+        FRONT
+        * Crear repositorio                                                 1 DONE
+        * Crear pantalla Login                                              2 DONE
+                Validations                                                 2
+        * Pantalla datos de tarjeta                                         2 DONE
+                 Validations                                                2
+        * Pantalla extracciones                                             3 DONE
+                Validations                                                 2 
+        * Pantalla historial                                                3 DONE
+        * Implementar seguridad                                             3
+        * Agregar pantalla para errore 500                                  2
+        * Agregar pantalla para error 401                                   1
+        * Global error handler para errores 400 500 206                     2
+
+
+puntos totales                                                              33
+puntos con margen de  30%                                                   
+puntos reales       
+
+
+
+
+CQRS
+Mediator
+Behavier
+Fluent validation
+
+
+COPY ["Metafar.Challenge.Infraestructure/Metafar.Challenge.Infraestructure.csproj", "Metafar.Challenge.Infraestructure/"]
+
+COPY ["Metafar.Challenge.Respository/Metafar.Challenge.Respository.csproj", "Metafar.Challenge.Respository/"]
+COPY ["Metafar.Challenge.Service/Metafar.Challenge.Service.csproj", "Metafar.Challenge.Service/"]
+
+
+Based on the following tables, generate data dummy to be inserted maintain the relations for the constraints

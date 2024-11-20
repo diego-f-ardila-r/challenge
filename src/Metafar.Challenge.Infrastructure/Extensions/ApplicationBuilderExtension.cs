@@ -1,5 +1,8 @@
 using Metafar.Challenge.Infrastructure.Middleware;
+using Metafar.Challenge.Repository;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Metafar.Challenge.Infrastructure.Extensions;
@@ -11,6 +14,13 @@ public static class ApplicationBuilderExtension
     /// </summary>
     public static void SetGlobalApplicationBuilder(WebApplication app)
     {
+        // Apply migrations at startup
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<MetafarDbContext>();
+            dbContext.Database.Migrate();
+        }
+        
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
