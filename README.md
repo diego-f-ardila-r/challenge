@@ -97,7 +97,7 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 
 #### Web App
 
-- **`METAFAR_URL_BASE`**: URL base para la aplicación web.
+- **`METAFAR_URL_BASE`**: URL base para las APIs del backend.
 
 ## Ejecución del Proyecto
 
