@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // configure metafar services
 builder.Services.AddHttpClient<MetafarService>(client =>
 {
-    client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("METAFAR_URL_BASE"));
+    client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("METAFAR_URL_API"));
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
