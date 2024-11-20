@@ -100,21 +100,27 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 - **`METAFAR_URL_BASE`**: URL base para las APIs del backend.
 
 ## Ejecución del Proyecto
+1. Ir al directorio
+   ```bash
+    cd challenge/src
+    ```
 
-1. Construye y levanta los contenedores utilizando Docker Compose:
+3. Construye y levanta los contenedores utilizando Docker Compose:
     ```bash
     docker compose up -d
     ```
-
-2. La API estará disponible en: `http://localhost:5000`.
-3. La aplicación web estará disponible en: `http://localhost:5001`.
-4. El proyecto crea automáticamente la base de datos mediante migraciones de Entity Framework.
-5. Una vez los servicios estén en ejecución, conéctate a la base de datos  **metafar.challenge.db ** y ejecuta el siguiente script SQL para insertar datos de prueba:
+4. La API estará disponible en: `http://localhost:5000/swagger`.
+5. La aplicación web estará disponible en: `http://localhost:5001`.
+6. El proyecto crea automáticamente la base de datos mediante migraciones de Entity Framework.
+7. Una vez los servicios estén en ejecución, conéctate a la base de datos  **metafar.challenge.db ** y ejecuta el siguiente script SQL para insertar datos de prueba:
 
     ```bash
     /src/Metafar.Challenge.Db/dummy-data-db.sql
     ```
-
+    Conección a BBDD
+    Host: localhost,1433
+    Database: metafar.challenge.db
+    
     **Credenciales de base de datos**:
     - **Usuario**: `sa`
     - **Contraseña**: `Password12345`
