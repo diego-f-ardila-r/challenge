@@ -10,6 +10,16 @@ Este documento describe la solución implementada para el *challenge* de Metafar
 - **Aplicación Web**: Interfaz de usuario para interactuar con la API.
 - **Diagrama Entidad-Relación**: Representación gráfica de la base de datos.
 
+## Funcionalidades
+
+El proyecto implementa las siguientes funcionalidades clave:
+
+1. **Login de usuario mediante número de tarjeta y PIN**
+2. **Bloqueo de usuario después de 4 intentos fallidos**
+3. **Vista de datos del usuario y cuenta**
+4. **Vista de operaciones con paginación**
+5. **Extracción de la cuenta**
+
 ## Tecnologías Utilizadas
 
 ### Backend
