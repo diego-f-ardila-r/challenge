@@ -18,7 +18,9 @@ El proyecto implementa las siguientes funcionalidades clave:
    ![1  Login](https://github.com/user-attachments/assets/0c642915-472b-4197-93a6-5e026ce65cb7)
    
 3. **Bloqueo de usuario después de 4 intentos fallidos**
-4. **Vista de datos del usuario y cuenta**
+   ![Screenshot 2024-11-20 at 12 30 16 PM](https://github.com/user-attachments/assets/e5a396d4-baef-4a2b-9d4d-5ecf1a20a7d4)
+
+5. **Vista de datos del usuario y cuenta**
    ![2  Account View](https://github.com/user-attachments/assets/2ff924c1-603b-48d4-93f5-9ad46f1cb117)
 
 6. **Vista de operaciones con paginación**
