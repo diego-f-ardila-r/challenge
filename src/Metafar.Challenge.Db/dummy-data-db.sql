@@ -28,7 +28,7 @@ DECLARE @AccountId3 UNIQUEIDENTIFIER = (SELECT TOP 1 account_id FROM dbo.account
 INSERT INTO dbo.cards (card_id, account_id, card_number, access_pin, failed_attempts, is_blocked, created_date, updated_date)
 VALUES
     (NEWID(), @AccountId1, 12345678, 1234, 0, 0, GETDATE(), GETDATE()),
-    (NEWID(), @AccountId2, 23456789, 5678, 3, 0, GETDATE(), GETDATE()),
+    (NEWID(), @AccountId2, 23456789, 5678, 4, 0, GETDATE(), GETDATE()),
     (NEWID(), @AccountId3, 34567890, 9012, 4, 1, GETDATE(), GETDATE());
 
 -- Insert into dbo.operations
