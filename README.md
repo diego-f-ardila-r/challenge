@@ -114,16 +114,17 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 6. El proyecto crea automáticamente la base de datos mediante migraciones de Entity Framework.
 7. Una vez los servicios estén en ejecución, conéctate a la base de datos  **metafar.challenge.db ** y ejecuta el siguiente script SQL para insertar datos de prueba:
 
-    ```bash
-    /src/Metafar.Challenge.Db/dummy-data-db.sql
-    ```
-    Conección a BBDD
-    Host: localhost,1433
-    Database: metafar.challenge.db
+### Conección a BBDD
+   * Host: localhost,1433
+   * Database: metafar.challenge.db
     
     **Credenciales de base de datos**:
     - **Usuario**: `sa`
     - **Contraseña**: `Password12345`
+    ```bash
+    /src/Metafar.Challenge.Db/dummy-data-db.sql
+    ```
+    
   
 ## 🧪 Casos de prueba
 ### Caso 1: Usuario con tarjeta bloqueda.
