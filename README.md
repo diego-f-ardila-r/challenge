@@ -15,10 +15,21 @@ Este documento describe la solución implementada para el *challenge de Metafar*
 El proyecto implementa las siguientes funcionalidades clave:
 
 1. **Login de usuario mediante número de tarjeta y PIN**
-2. **Bloqueo de usuario después de 4 intentos fallidos**
-3. **Vista de datos del usuario y cuenta**
-4. **Vista de operaciones con paginación**
-5. **Extracción de la cuenta**
+   ![1  Login](https://github.com/user-attachments/assets/0c642915-472b-4197-93a6-5e026ce65cb7)
+   
+3. **Bloqueo de usuario después de 4 intentos fallidos**
+4. **Vista de datos del usuario y cuenta**
+   ![2  Account View](https://github.com/user-attachments/assets/2ff924c1-603b-48d4-93f5-9ad46f1cb117)
+
+6. **Vista de operaciones con paginación**
+   ![3  Operations view](https://github.com/user-attachments/assets/f16fff8c-8b67-4e37-8a4a-ca09e3c96fca)
+
+8. **Extracción de la cuenta**
+   ![4  Extraccion view](https://github.com/user-attachments/assets/8daa15a0-0438-402c-81cf-255d960e9018)
+   
+10. **Extracción exitosa**
+
+   ![5  Extraccion exitosa](https://github.com/user-attachments/assets/9b2fdbfb-79a1-4232-b34f-0b6cf3d56696)
 
 ## Endpoints
 
