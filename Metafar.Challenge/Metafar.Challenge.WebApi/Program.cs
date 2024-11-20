@@ -1,44 +1,66 @@
+using Metafar.Challenge.Dto;
+using Metafar.Challenge.Infrastructure.Extensions;
+using Metafar.Challenge.Model;
+using Metafar.Challenge.Repository.Account.Commands;
+using Metafar.Challenge.Repository.Account.Queries;
+using Metafar.Challenge.Repository.Card.Commands;
+using Metafar.Challenge.Repository.Operation.Commands;
+using Metafar.Challenge.Repository.Queries.Card;
+using Metafar.Challenge.UseCase.Account.Commands.WithdrawFromAccount;
+using Metafar.Challenge.UseCase.Account.Queries.GetAccountInformationByCardNumber;
+using Metafar.Challenge.UseCase.Automapper;
+using Metafar.Challenge.UseCase.Operation.Queries;
+using Metafar.Challenge.UseCase.Security.Queries.SignInUserByCard;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Metafar.Challenge.Infrastructure.Utility;
+using Metafar.Challenge.Model.Configurations;
+using Metafar.Challenge.Repository.Operation.Queries;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Global configuration
+ServiceExtension.SetGlobalConfiguration(builder);
+
+// Add FluentValidation services
+builder.Services.AddFluentValidationAutoValidation();
+        
+// Set Jwt authentication
+builder.Services.AddTransient<JwtTokenUtility>();
+JwtAuthBuilderExtension.AddJwtAuthentication(builder);
+
+// Add Repository services
+builder.Services.AddScoped<ICardQueryRepository, CardQueryRepository>();
+builder.Services.AddScoped<ICardCommandRepository, CardCommandRepository>();
+builder.Services.AddScoped<IAccountQueryRepository, AccountQueryRepository>();
+builder.Services.AddScoped<IAccountCommandRepository, AccountCommandRepository>();
+builder.Services.AddScoped<IOperationCommandRepository, OperationCommandRepository>();
+builder.Services.AddScoped<IOperationQueryRepository, OperationQueryRepository>();
+
+// Add auto-mapper profiles
+builder.Services.AddAutoMapper(typeof(ChallengeMapperProfile));
+
+// Add UseCase services for UserLogin
+builder.Services.AddScoped<ResponseModel<TokenDto>>();
+builder.Services.AddScoped<SignInUserByCardQuery>();
+builder.Services.AddScoped<SignInUserByCardHandler>();
+builder.Services.AddScoped<SignInUserByCardValidator>();
+
+// Add use case services for GetAccountInfoByCardNumber
+builder.Services.AddScoped<ResponseModel<AccountUserDto>>();
+builder.Services.AddScoped<GetAccountInfoByCardNumberQuery>();
+builder.Services.AddScoped<GetAccountInformationByCardNumberHandler>();
+
+// Add use case services for WithdrawFromAccount
+builder.Services.AddScoped<ResponseModel<WithdrawDto>>();
+builder.Services.AddScoped<WithdrawFromAccountCommand>();
+builder.Services.AddScoped<WithdrawFromAccountHandler>();
+
+// Add use case services for GetOperationsByCardNumber
+builder.Services.AddScoped<ResponseModel<IEnumerable<OperationDto>>>();
+builder.Services.AddScoped<GetOperationsByCardNumberQuery>();
+builder.Services.AddScoped<GetOperationsByCardNumberHandler>();
+builder.Services.AddValidatorsFromAssemblyContaining<GetOperationsByCardNumberValidator>();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+ApplicationBuilderExtension.SetGlobalApplicationBuilder(app);
