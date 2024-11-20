@@ -29,6 +29,7 @@ Este documento describe la solución implementada para el challenge de Metafar. 
 - Docker Compose
 - Net 8
 - Visual Studio / Visual code
+- SQL Server Management Studio o similares
 
 ## Configuración
 
@@ -67,6 +68,7 @@ Las siguientes variables de entorno se utilizan en el archivo `src/docker-compos
 ### API
 Swagger url http://localhost:5000/swagger/index.html
 
+- `GET /v1/security/{cardNumber}/{pin} `: Generar token de autorización.
 - `GET /v1/accounts/{cardNumber}`: Obtiene la información de la cuenta por número de tarjeta.
 - `GET /v1/accounts/{cardNumber}`: Obtiene la información de la cuenta por número de tarjeta.
 - `POST /v1/accounts/balance/withdraw`: Realiza una extración de la cuenta.
@@ -82,7 +84,8 @@ Swagger url http://localhost:5000/swagger/index.html
 2. La API estará disponible en `http://localhost:5000` y la aplicación web en `http://localhost:5001`.
 3. Por defecto el proyecto crea la BBDD mediante una migracion
 4. Una vez los servicios esten en ejecution dentro de docker conectarse a la BBDD y ejecutar el script de SQL (/src/Metafar.Challenge.Db/dummy-data-db.sql) el cual contiene datos dummy.
-
+    Usuario db: sa
+    Contraseña: Password12345
 
 ## Notas
 
