@@ -29,7 +29,7 @@ public class AccountController(
     }
     
     /// <summary>
-    /// Get account information by card number.
+    /// Withdraw from account.
     /// </summary>
     //[Authorize]
     [HttpPost("balance/withdraw")]
