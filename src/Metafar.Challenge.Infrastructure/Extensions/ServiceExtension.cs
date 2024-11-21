@@ -1,5 +1,7 @@
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Metafar.Challenge.Infrastructure.Configurations;
 using Metafar.Challenge.Infrastructure.Handlers;
 using Metafar.Challenge.Infrastructure.Utility;
 using Metafar.Challenge.Model;
@@ -7,9 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Metafar.Challenge.Infrastructure.Constants;
-using Metafar.Challenge.Model.Configurations;
 using Metafar.Challenge.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Metafar.Challenge.Infrastructure.Extensions;
 
@@ -17,6 +19,10 @@ public static class ServiceExtension
 {
     public static void SetGlobalConfiguration(WebApplicationBuilder builder)
     {
+        // Set AppSettings configuration
+        builder.Services.Configure<AppSettingsModel>(builder.Configuration.GetSection("AppSettings"));
+        var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettingsModel>();
+        
         // Add services to the container.
         builder.Services.AddCustomControllerConfiguration();
 
@@ -25,8 +31,16 @@ public static class ServiceExtension
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(SwaggerConfigurationUtility.Configure);
         
+        // Swagger configuration
+        builder.Services.AddSwaggerGen(options =>
+        {
+            SwaggerConfigurationUtility.Configure(
+                options, 
+                appSettings?.Swagger?.Name ?? $"{Assembly.GetExecutingAssembly().GetName().Name}",
+                appSettings?.Swagger?.Title ?? "API", 
+                appSettings?.Swagger?.Version ?? "v1");
+        });
         // Add OSS configuration
         builder.Services.AddErrorHandlerConfiguration();
         builder.Services.AddCustomConfiguration();
@@ -42,9 +56,6 @@ public static class ServiceExtension
         {
             options.UseSqlServer(Environment.GetEnvironmentVariable("DB"));
         });
-        
-        // Set AppSettings configuration
-        builder.Services.Configure<AppSettingsModel>(builder.Configuration.GetSection("AppSettings"));
     }
 
     private static IServiceCollection AddCustomControllerConfiguration(this IServiceCollection services)

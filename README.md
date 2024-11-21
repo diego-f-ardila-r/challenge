@@ -1,4 +1,4 @@
-# 📘 Documentación del Proyecto
+# 📘 Documentación del Challenge
 
 ## Introducción
 
