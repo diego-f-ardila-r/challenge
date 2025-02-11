@@ -159,5 +159,5 @@ Las variables de entorno necesarias para la ejecución del proyecto ya están co
 
 ## 📜 Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT.
+Open source.
 
